@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/employee_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Leave Balence</title>
+		<th:block id="style">
+			 <style>
+			 	.card{
+					background:white;
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+	 			}
+	 			.btn{
+	 				font-size:5px;
+	 			}
+	 			.icon-box{
+				    width:60px;				
+				    height:60px;				
+				    border-radius:50%;				
+				    display:flex;				
+				    align-items:center;				
+				    justify-content:center;				
+				    font-size:26px;				
+				}
+	 			.progress{
+				    border-radius:20px;				
+				    background:#E2E8F0;				
+				}
+				.progress-bar{				
+				    border-radius:20px;				
+				}
+				
+				.table-hover tbody tr{
+				    transition:.25s;
+				}
+				
+				.table-hover tbody tr:hover{
+				    background:#F8FAFC;
+				}
+				
+				.table td,table th{
+				    vertical-align:middle;
+				}
+				
+				.btn-outline-success{
+				    width:34px;
+				    height:34px;
+				    display:flex;
+				    align-items:center;
+				    justify-content:center;
+				}
+				
+				.badge{
+				    padding:7px 12px;
+				    border-radius:20px;
+				}
+			 </style>			 
+		</th:block>
+	</head>
+	<body id="main">
+		<!-- Cards -->
+		<div class="container mt-3 mb-3">
+			<div class="row g-4 mb-4">
+			    <!-- Casual Leave -->
+			    <div class="col-xl-3 col-lg-6 col-md-6">
+			        <div class="card border-0 shadow-sm rounded-4 h-100 leave-card">
+			            <div class="card-body">				
+			                <div class="d-flex justify-content-between align-items-center">				
+			                    <div class="icon-box bg-success-subtle text-success">
+			                        <i class="bi bi-calendar2-check-fill"></i>
+			                    </div>				
+			                    <span class="badge bg-success-subtle text-success"><span th:text="${grade.allowedcl}">12</span> Days</span>				
+			                </div>				
+			                <h5 class="mt-4 mb-1 fw-semibold">Casual Leave</h5>				
+			                <h1 class="fw-bold mb-0"><span th:text="${list.remainingcl}">8</span></h1>				
+			                <small class="text-secondary">Days Remaining</small>				
+			                <div class="progress mt-3" style="height:8px;">
+			                    <div class="progress-bar bg-success" th:style=" 'width :'+(${list.remainingcl} * 100 / ${grade.allowedcl}) + '%' "></div>
+			                </div>				
+			            </div>
+			        </div>
+			    </div>				
+			    <!-- Sick Leave -->				
+			    <div class="col-xl-3 col-lg-6 col-md-6">
+			        <div class="card border-0 shadow-sm rounded-4 h-100 leave-card">				
+			            <div class="card-body">				
+			                <div class="d-flex justify-content-between align-items-center">				
+			                    <div class="icon-box bg-primary-subtle text-primary">
+			                        <i class="bi bi-heart-pulse-fill"></i>
+			                    </div>				
+			                    <span class="badge bg-primary-subtle text-primary"><span th:text="${grade.allowedml}"></span> Days</span>				
+			                </div>				
+			                <h5 class="mt-4 mb-1 fw-semibold">Medical Leave</h5>				
+			                <h1 class="fw-bold mb-0"><span th:text="${list.remainingml}">7</h1>				
+			                <small class="text-secondary">Days Remaining</small>				
+			                <div class="progress mt-3" style="height:8px;">
+			                    <div class="progress-bar bg-primary" th:style=" 'width :'+(${list.remainingml} * 100 / ${grade.allowedml}) + '%' "></div>
+			                </div>				
+			            </div>
+			        </div>
+			    </div>				
+			    <!-- Earned Leave -->				
+			    <div class="col-xl-3 col-lg-6 col-md-6">
+			        <div class="card border-0 shadow-sm rounded-4 h-100 leave-card">				
+			            <div class="card-body">				
+			                <div class="d-flex justify-content-between align-items-center">				
+			                    <div class="icon-box bg-warning-subtle text-warning">
+			                        <i class="bi bi-award-fill"></i>
+			                    </div>				
+			                    <span class="badge bg-warning-subtle text-warning"> <span th:text="${grade.allowedel}"></span> Days</span>				
+			                </div>				
+			                <h5 class="mt-4 mb-1 fw-semibold">Earned Leave</h5>				
+			                <h1 class="fw-bold mb-0"><span th:text="${list.remainingel}">14</h1>				
+			                <small class="text-secondary">Days Remaining</small>				
+			                <div class="progress mt-3" style="height:8px;">
+			                    <div class="progress-bar bg-warning" th:style=" 'width :'+(${list.remainingel} * 100 / ${grade.allowedel}) + '%' "></div>
+			                </div>				
+			            </div>
+			        </div>
+			    </div>				
+			    <!-- Total Leave -->				
+			    <div class="col-xl-3 col-lg-6 col-md-6">
+			        <div class="card border-0 shadow-sm rounded-4 h-100 leave-card">				
+			            <div class="card-body">				
+			                <div class="d-flex justify-content-between align-items-center">				
+			                    <div class="icon-box bg-danger-subtle text-danger">
+			                        <i class="bi bi-briefcase-fill"></i>
+			                    </div>				
+			                    <span class="badge bg-danger-subtle text-danger"><span th:text="${grade.allowedcl + grade.allowedrh + grade.allowedel + grade.allowedml}">Total</span>Days</span>				
+			                </div>				
+			                <h5 class="mt-4 mb-1 fw-semibold">Total Balance</h5>				
+			                <h1 class="fw-bold mb-0"> <span th:text="${list.remainingcl + list.remainingrh + list.remainingml + list.remainingel}">29</span></h1>				
+			                <small class="text-secondary">Days Remaining</small>				
+			                <div class="progress mt-3" style="height:8px;">
+			                    <div class="progress-bar bg-danger" th:style=" 'width :'+(${list.remainingcl + list.remainingrh + list.remainingml + list.remainingel} * 100 / ${grade.allowedcl + grade.allowedrh + grade.allowedel + grade.allowedml}) + '%' "></div>
+			                </div>				
+			            </div>
+			        </div>
+			    </div>				
+			</div>
+		</div>			
+		<!-- Table -->
+		<div class="container my-3">
+			<div class="row g-4">
+			    <!-- Leave Balance Table -->
+			    <div class="col-lg-1"></div>
+			    <div class="col-lg-10">				
+			        <div class="card border-0 shadow-sm rounded-4 h-100">				
+			            <div class="card-header bg-white border-0 py-3">
+			                <h5 class="fw-bold mb-0">
+			                    <i class="bi bi-table me-2 text-success"></i>
+			                    Leave Balance Details
+			                </h5>
+			            </div>				
+			            <div class="card-body">				
+			                <div class="table-responsive">				
+			                    <table class="table table-hover align-middle">				
+			                        <thead class="table-light">				
+				                        <tr>				
+				                            <th>Leave Type</th>
+				                            <th>Total</th>
+				                            <th>Used</th>
+				                            <th>Remaining</th>
+				                            <th>Status</th>				
+				                        </tr>				
+			                        </thead>				
+			                        <tbody>				
+				                        <tr>				
+				                            <td>Casual Leave</td>
+				                            <td th:text="${list.remainingcl + list.usedcl}">12</td>
+				                            <td th:text="${list.usedcl}">4</td>
+				                            <td><strong th:text="${list.remainingcl}">8</strong></td>
+				                            <td><span class="badge bg-success" th:if="${list.remainingcl > 0}">Available</span><span class="badge bg-danger" th:if="${list.remainingcl == 0}">Exhausted</span></td>				
+				                        </tr>				
+				                        <tr>			
+				                            <td>Medical Leave</td>
+				                            <td th:text="${list.remainingml + list.usedml}">10</td>
+				                            <td th:text="${list.usedml}">3</td>
+				                            <td><strong th:text="${list.remainingml}">7</strong></td>
+				                            <td><span class="badge bg-success" th:if="${list.remainingml > 0}">Available</span><span class="badge bg-danger" th:if="${list.remainingml == 0}">Exhausted</span></td>				
+				                        </tr>			
+				                        <tr>				
+				                            <td>Earned Leave</td>
+				                            <td th:text="${list.remainingel + list.usedel}">20</td>
+				                            <td th:text="${list.usedml}">6</td>
+				                            <td><strong th:text="${list.remainingel}">14</strong></td>
+				                            <td><span class="badge bg-success" th:if="${list.remainingel > 0}">Available</span><span class="badge bg-danger" th:if="${list.remainingel == 0}">Exhausted</span></td>				
+				                        </tr>
+				                         <tr>				
+				                            <td>Maternity Leave</td>
+				                            <td th:text="${list.remaingmaternityleave + list.usedmaternityleave}">20</td>
+				                            <td th:text="${list.usedmaternityleave}">6</td>
+				                            <td><strong th:text="${list.remaingmaternityleave}">14</strong></td>
+				                            <td><span class="badge bg-success" th:if="${list.remaingmaternityleave > 0}">Available</span><span class="badge bg-danger" th:if="${list.remaingmaternityleave == 0}">Exhausted</span></td>				
+				                        </tr>
+				                         <tr>				
+				                            <td>Restricted Holiday</td>
+				                            <td th:text="${list.remainingrh + list.usedrh}">20</td>
+				                            <td th:text="${list.usedrh }">6</td>
+				                            <td><strong th:text="${list.remainingrh }">14</strong></td>
+				                            <td><span class="badge bg-success" th:if="${list.remainingrh > 0}">Available</span><span class="badge bg-danger" th:if="${list.remainingrh == 0}">Exhausted</span></td>				
+				                        </tr>			
+				                        <tr>				
+				                            <td>Child-care Leave</td>
+				                            <td th:text="${list.reamainingccl + list.usedccl}">8</td>
+				                            <td th:text="${list.usedccl}">8</td>
+				                            <td><strong th:text="${list.reamainingccl}">0</strong></td>
+				                            <td><span class="badge bg-success" th:if="${list.reamainingccl > 0}">Available</span><span class="badge bg-danger" th:if="${list.reamainingccl == 0}">Exhausted</span></td>				
+				                        </tr>				
+			                        </tbody>				
+			                    </table>				
+			                </div>				
+			            </div>				
+			        </div>				
+			    </div>
+			    <div class="col-lg-1"></div>				
+			</div>
+		</div>		
+	</body>
+</html>

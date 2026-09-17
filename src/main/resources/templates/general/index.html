@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/general_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>VertexOne Software Solutions - Home</title>
+		<th:block id="style">
+			 <link rel="stylesheet" th:href="@{/CSS/general/index.css}">
+		</th:block>
+	</head>
+	<body id="main">
+	<marquee class="notice-bar">
+			    <span th:each="s : ${lst}" class="notice-item"><i class="bi bi-bell-fill notice-icon"></i><span th:text="${s}"></span></span>
+			</marquee>
+		<!-- Introduction Image  Starts -->
+		<div class="row">
+			<div class="col-sm-12" style="height: 350px; background-image:url('assets/images/Home-hero.png'); background-size:cover; background-position:center; background-repeat: no-repeat;">
+				<p class="h1 my-5 py-4 px-5 mb-1 pb-0 fw-semibold">Leave Management System</p>
+				<p class="py-1 px-5 pb-4">
+					Streamline leave requests, approvals, and tacking <br/>
+					in one secure platform. Simplify work-flows, ensure<br/>
+					transparency, and empowers VertexOne to<br/>
+					work more efficiently.
+				<p>
+				<a href="/emplogin" class="btn btn-primary ms-5">Apply Leave &rarr;</a>
+				<a href="/policy" class="btn btn-outline-primary ms-3">Learn more</a>
+			</div>
+		</div>
+	<!-- Introduction Image  Ends -->
+	
+	<!-- How it works starts -->
+		<div class="container-fluid py-5" style="background:#F8FAFC; border-top:1px solid #e5e7eb;">
+		    <div class="container">
+		        <!-- Heading -->
+		        <div class="text-center mb-5">
+		            <h6 class="text-primary fw-semibold text-uppercase">How It Works</h6>
+		            <h2 class="fw-bold">Simple Step-by-Step Leave Process</h2>
+		            <p class="text-secondary">Apply for leave in four simple steps with our efficient workflow.</p>
+		        </div>
+	     			<!-- Cards -->
+		        <div class="row align-items-center justify-content-center">
+		            <!-- Card 1 -->
+		            <div class="col-lg-2 col-md-6 mb-4">
+		                <div class="process-card text-center">
+		                    <div class="step-number">01</div>
+		                    <div class="icon-circle">
+		                        <i class="bi bi-person-circle"></i>
+		                    </div>
+		                    <h5 class="mt-3 fw-bold">Login</h5>
+		                    <p class="text-secondary">Securely login using your employee credentials.</p>
+		                </div>
+		            </div>
+		            <!-- Arrow -->
+		            <div class="col-lg-1 d-none d-lg-block text-center">
+		                <i class="bi bi-arrow-right-circle-fill process-arrow"></i>
+		            </div>
+		            <!-- Card 2 -->
+		            <div class="col-lg-2 col-md-6 mb-4">
+		                <div class="process-card text-center">
+		                    <div class="step-number">02</div>
+		                    <div class="icon-circle">
+		                        <i class="bi bi-file-earmark-text"></i>
+		                    </div>
+		                    <h5 class="mt-3 fw-bold">Apply Leave</h5>
+		                    <p class="text-secondary">Submit your leave request with required details.</p>
+		                </div>
+		            </div>
+		            <!-- Arrow -->
+		            <div class="col-lg-1 d-none d-lg-block text-center">
+		                <i class="bi bi-arrow-right-circle-fill process-arrow"></i>
+		            </div>
+		            <!-- Card 3 -->
+		            <div class="col-lg-2 col-md-6 mb-4">
+		                <div class="process-card text-center">
+	                    	<div class="step-number">03</div>
+	                    	<div class="icon-circle">
+	                        	<i class="bi bi-person-check"></i>
+	                    	</div>
+	                    	<h5 class="mt-3 fw-bold">HR Verification</h5>
+	                    	<p class="text-secondary">HR verifies your request and leave balance.</p>
+	                	</div>
+		            </div>
+		            <!-- Arrow -->
+		            <div class="col-lg-1 d-none d-lg-block text-center">
+		                <i class="bi bi-arrow-right-circle-fill process-arrow"></i>
+		            </div>
+		            <!-- Card 4 -->
+		            <div class="col-lg-2 col-md-6 mb-4">
+		                <div class="process-card text-center">
+		                    <div class="step-number">
+		                        04
+		                    </div>
+		                    <div class="icon-circle">
+		                        <i class="bi bi-check-circle"></i>
+		                    </div>
+		                    <h5 class="mt-3 fw-bold">
+		                        Leave Approval
+		                    </h5>
+		                    <p class="text-secondary">
+		                        Receive approval notification instantly.
+		                    </p>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	<!-- How it works ends -->
+	
+	<!-- About us  Starts -->
+		<div class="row my-2 bg-light">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10">
+				<div class="text-center fw-semibold mb-4">
+					<h6 class="text-primary text-uppercase">About us</h6>
+					<h2 class="fw-bold">VertexOne Leave Management System</h2>
+					<p class="text-secondary">Smart, Secure & Efficient HR Solution</p>
+				</div>
+				<div class="row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-10 mb-4">
+						<div class="row">
+							<div class="col-sm-5 p-1">
+								<img class="img-rounded img-responsive mt-3" src="assets/images/home-about-img.png" alt="home about" style="width:100%; height:300px; border-radius: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.13); transition: 0.35s"/>
+							</div>
+						<!-- About us right side -->
+							<div class="col-sm-6 mx-4 my-3 ">
+								<h6 class="text-primary fw-semibold">ABOUT</h6>
+								<h3 class="fw-bold  mb-3">Leave Management System</h3>
+								<p>
+									VertexOne Leave Management System is a modern HR solution
+					                designed to simplify leave applications, approvals,<br/>
+					                employee records, and reporting while ensuring transparency<br/>
+					                and efficiency.<br/>
+					                <ul>
+					                	<li>Easy leave application</li>
+					                	<li>Quick Approval</li>
+					                	<li>Real-time tracking</li>
+					                </ul>
+	             						</p>
+	             						<button class="btn btn-outline-primary mt-1" type="button" data-bs-toggle="collapse" data-bs-target="#aboutMore">Learn more...</button>
+							</div>
+						<!-- About us right ends -->
+						</div>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>
+				<div class="collapse mt-4" id="aboutMore">
+					<div class=" p-4 bg-light">
+						<p>
+							The <b>VertexOne Leave Management System</b> is a digital platform developed to streamline and automate the leave application and approval process within the organization.
+							It eliminates the traditional paper-based systems, enabling employees to apply for leave online and allowing managers to approve or reject leave request in structured and timely manner.						
+						</p>
+						<p>
+							The system ensures accurate leave tracking, maintains transparency,and improves communication between employees and management. 
+							It supports various leave types, holiday calendars, automated notifications, and centralized reporting.
+	       							</p>
+	       							<h4 class="fw-semibold mt-4">Objectives</h4>
+	       							<ul>
+				            <li>Provide an online leave application platform.</li>
+				            <li>Reduce paperwork and manual processing.</li>
+				            <li>Enable quick HR verification.</li>
+				            <li>Improve transparency in approvals.</li>
+				            <li>Generate reports and analytics.</li>
+				            <li>Maintain accurate leave history.</li>
+				       </ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+	<!-- About us  ends -->
+	<!-- Features starts  -->
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10 text-center">
+				<div class="text-center mb-5">
+					<h6 class="mt-3 fw-semibold text-uppercase text-primary">Features</h6>
+					<h3 class="fw-bold ">Everything you need to manage leaves efficiently.</h3>
+					<p class="text-secondary">Designed to simplify leave requests, approvals, tracking, and reporting with an intuitive and secure workflow.</p>
+				</div>
+				
+				<div class="row g-4 mb-3">
+					<!-- Card 1 -->
+					<div class="col-lg-3 col-md-6 mb-4">
+		                <div class="process-card text-center">
+	                    	<div class="icon-box">
+	                        	<i class="bi bi-file-earmark-plus"></i>
+	                    	</div>
+	                    	<h5 class="mt-3 fw-bold">Apply Leave</h5>
+	                    	<p class="text-secondary">Submit leave requests online quickly and securely from anywhere.</p>
+	                	</div>
+		            </div>
+		            <!-- Card 2 -->
+					<div class="col-lg-3 col-md-6 mb-4">
+		                <div class="process-card text-center">
+	                    	<div class="icon-box">
+	                        	<i class="bi bi-calendar-check"></i>
+	                    	</div>
+	                    	<h5 class="mt-3 fw-bold">Leave Balance</h5>
+	                    	<p class="text-secondary">View your available, used, and remaining leave balance in real time.</p>
+	                	</div>
+		            </div>
+		            <!-- Card 3 -->
+					<div class="col-lg-3 col-md-6 mb-4">
+		                <div class="process-card text-center">
+	                    	<div class="icon-box">
+	                        	<i class="bi bi-person-check"></i>
+	                    	</div>
+	                    	<h5 class="mt-3 fw-bold">HR Verification</h5>
+	                    	<p class="text-secondary">HR verifies leave request efficiently while ensuring policy compliance.</p>
+	                	</div>
+		            </div>
+		            <!-- Card 4 -->
+					<div class="col-lg-3 col-md-6 mb-4">
+		                <div class="process-card text-center">
+	                    	<div class="icon-box">
+	                        	<i class="bi bi-check2-circle"></i>
+	                    	</div>
+	                    	<h5 class="mt-3 fw-bold">Approval Workflow</h5>
+	                    	<p class="text-secondary">Managers can approve or reject leaves with a transparent workflow.</p>
+	                	</div>
+		            </div>
+		            <!-- Card 5 -->
+					<div class="col-lg-3 col-md-6 mb-4">
+		                <div class="process-card text-center">
+	                    	<div class="icon-box">
+	                        	<i class="bi bi-calendar-event"></i>
+	                    	</div>
+	                    	<h5 class="mt-3 fw-bold">Holiday Calendar</h5>
+	                    	<p class="text-secondary">Stay informed about company holidays and plan your leave more effectively.</p>
+	                	</div>
+		            </div>
+		            <!-- Card 6 -->
+					<div class="col-lg-3 col-md-6 mb-4">
+		                <div class="process-card text-center">
+	                    	<div class="icon-box">
+	                        	<i class="bi bi-bell"></i>
+	                    	</div>
+	                    	<h5 class="mt-3 fw-bold">Instant Notifications</h5>
+	                    	<p class="text-secondary">Receive real-time updates for leave requests, approvals, and important announcements.</p>
+	                	</div>
+		            </div>
+		            <!-- Card 7 -->
+					<div class="col-lg-3 col-md-6 mb-4">
+		                <div class="process-card text-center">
+	                    	<div class="icon-box">
+	                        	<i class="bi bi-bar-chart-line"></i>
+	                    	</div>
+	                    	<h5 class="mt-3 fw-bold">Reports & Analytics</h5>
+	                    	<p class="text-secondary">Generate detailed reports to monitor leave trends and work-force planning.</p>
+	                	</div>
+		            </div>
+		            <!-- Card 8 -->
+					<div class="col-lg-3 col-md-6 mb-4">
+		                <div class="process-card text-center">
+	                    	<div class="icon-box">
+	                        	<i class="bi bi-shield-lock"></i>
+	                    	</div>
+	                    	<h5 class="mt-3 fw-bold">Secure Access</h5>
+	                    	<p class="text-secondary">Role-based authentication protects employee information and organizational data.</p>
+	                	</div>
+		            </div>
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+	<!-- Features ends -->
+	<!-- Impact starts. -->
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="text-center">
+					<h6 class="mt-3 fw-semibold text-uppercase text-primary">Our Impact</h6>
+					<h3 class="fw-bold ">Delivering Excellence Through Innovation.</h3>
+					<p class="text-secondary"> A smarter way to manage employee leave with speed,transparency and security.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-5">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10">
+				<div class="row g-4 mt-2 mb-4">
+					<div class="col-lg-3 col-md-6">
+						<div class="impact-card text-center" style="border-right: 2px solid lightgrey;">
+							<div class="icon-box">
+								<i class="bi bi-people-fill"></i>
+							</div>
+							<h1 class="counter">100+</h1>
+							<h5>Active Employees</h5>
+						</div>
+					</div>
+					
+					<div class="col-lg-3 col-md-6">
+						<div class="impact-card text-center" style="border-right: 2px solid lightgrey;">
+							<div class="icon-box">
+								<i class="bi bi-clipboard-data-fill"></i>
+							</div>
+							<h1 class="counter">5000+</h1>
+							<h5>Leaves Processed</h5>
+						</div>
+					</div>
+					
+					<div class="col-lg-3 col-md-6">
+						<div class="impact-card text-center" style="border-right: 2px solid lightgrey;">
+							<div class="icon-box">
+								<i class="bi bi-trophy"></i>
+							</div>
+							<h1 class="counter">98%</h1>
+							<h5>Approval Rate</h5>
+						</div>
+					</div>
+					
+					<div class="col-lg-3 col-md-6">
+						<div class="impact-card text-center">
+							<div class="icon-box">
+								<i class="bi bi-headset"></i>
+							</div>
+							<h1 class="counter">24/7</h1>
+							<h5>Support Available</h5>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+	<!-- Impact Ends. -->
+	<!-- What user say starts -->
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10">
+				<div class="text-center mb-5">
+					<h6 class="mt-3 fw-semibold text-uppercase text-primary">TESTIMONIALS</h6>
+					<h3 class="fw-bold ">What Our Users Say</h3>
+					<p class="text-secondary"> Hear from employees and HR professionals who use VertexOne.</p>
+				</div>
+				<div class="row g-4">
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="process-card h-100">
+							<p class="testimonial-text">"VertexOne has completely transformed our leave management process. Employees can submit leave requests within minutes."</p>
+							<hr>
+							<div class="d-flex align-items-center">
+								<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" height="60" width="60" alt="user" style="border-radius:20px;">
+								<div class="ms-3">
+									<h6 class="mb-0 fw-bold">Priya Verma</h6>
+									<small class="text-muted">HR Executive</small>
+									<small class="text-primary">TechNova Solutions</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="process-card h-100">
+							<p class="testimonial-text">"The approval workflow is smooth, intuitive, and has significantly reduced paperwork across our organization."</p>
+							<hr>
+							<div class="d-flex align-items-center">
+								<img src="https://plus.unsplash.com/premium_photo-1689977807477-a579eda91fa2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" height="60" width="60" alt="user" style="border-radius:20px;">
+								<div class="ms-3">
+									<h6 class="mb-0 fw-bold">Amit Singh</h6>
+									<small class="text-muted">Operation Manager</small>
+									<small class="text-primary">NextGen Pvt. Ltd.</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="process-card h-100">
+							<p class="testimonial-text">"A reliable and user-friendly platform that keeps employees and managers informed through instant notifications."</p>
+							<hr>
+							<div class="d-flex align-items-center">
+								<img src="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D" height="60" width="60" alt="user" style="border-radius:20px;">
+								<div class="ms-3">
+									<h6 class="mb-0 fw-bold">Rahul Sharma</h6>
+									<small class="text-muted">HR Manager</small>
+									<small class="text-primary">ABC Technologies</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+	<!-- What user say ends -->
+	<!-- Start now -->
+		<div class="row mb-4 mt-3">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10">
+				<div class="row bg-primary" style="border-radius:10px;">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-10 pt-3 px-2 text-white">
+						<div class="row">
+							<div class="col-sm-2 text-center">
+								<div class=" mx-0" style="font-size:50px;">
+									<i class="bi bi-telegram"></i>
+								</div>
+							</div>
+							<div class="col-sm-8">
+								<h2 class="fw-semibold">Ready to simplify Leave Management?</h2>
+								<p>Join hundred of organizations using VertexOne to manage leaves efficiently</p>
+							</div>
+							<div class="col-sm-2">
+								<a href="/register" class="btn btn-light text-primary mt-3">Get started now</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+	</body>
+</html>

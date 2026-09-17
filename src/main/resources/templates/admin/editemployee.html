@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/admin_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Edit Employee</title>
+    <th:block id="style">
+        <style>
+            .page-title h3 {
+                color: #1E293B;
+                font-weight: 700;
+            }
+            .page-title p {
+                color: #64748B;
+            }
+            .card {
+                border: none;
+                border-radius: 18px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, .06);
+            }
+            .card-header {
+                background: #ffffff;
+                border-bottom: 1px solid #E5E7EB;
+                padding: 18px 25px;
+            }
+            .card-header h5 {
+                color: #1E293B;
+                font-weight: 600;
+            }
+            label {
+                font-size: 14px;
+                color: #64748B;
+                font-weight: 600;
+                margin-bottom: 7px;
+            }
+            .form-control,
+            .form-select {
+                min-height: 46px;
+                border-radius: 12px;
+                border: 1px solid #D1D5DB;
+            }
+            .form-control:focus,
+            .form-select:focus {
+                border-color: #2563EB;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, .08);
+            }
+            .profile-card {
+                text-align: center;
+            }
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 5px solid #E0E7FF;
+            }
+            .employee-name {
+                font-weight: 700;
+                color: #1E293B;
+                margin-top: 15px;
+                margin-bottom: 5px;
+            }
+            .employee-id {
+                color: #64748B;
+                font-size: 14px;
+            }
+            .badge {
+                padding: 8px 14px;
+                border-radius: 50px;
+                font-size: 13px;
+            }
+            .section-icon {
+                width: 38px;
+                height: 38px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                background: #EEF2FF;
+                color: #4F46E5;
+                margin-right: 10px;
+            }
+            .form-actions {
+                border-top: 1px solid #E5E7EB;
+                padding-top: 20px;
+                margin-top: 25px;
+            }
+            @media (max-width: 768px) {
+                .profile-card {
+                    margin-bottom: 25px;
+                }
+                .form-actions .btn {
+                    width: 100%;
+                    margin-bottom: 8px;
+                }
+            }
+        </style>
+    </th:block>
+</head>
+<body id="main">
+    <div class="container-fluid py-4">
+		<div class="page-title mb-4">
+            <h3 class="mb-1"><i class="bi bi-person-gear text-primary me-2"></i>Edit Employee</h3>
+            <p class="mb-0">Update employee personal and employment information.</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-person-lines-fill text-primary me-2"></i>Employee Information</h5>
+            </div>
+            <div class="card-body p-4">
+                <form th:object="${employee}" action="/updateemployee" method="post">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card profile-card shadow-sm">
+                                <div class="card-body p-4">
+                                    <img class="profile-image" th:src="@{'/employee-images/' + ${employee.pic_file_name}}" alt="Employee Profile">
+                                    <h4 class="employee-name" th:text="${employee.fullname}">Shivam Singh </h4>
+                                    <div class="employee-id mb-3">
+                                        Employee ID:
+                                        <strong th:text="${employee.empid}"></strong>
+                                    </div>
+                                    <span class="badge bg-primary" th:text="${employee.designation}"></span>
+                                    <div class="mt-3">
+                                        <span class="badge bg-success" th:text="${employee.empgrade}">Grade-A</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><span class="section-icon"><i class="bi bi-person"></i></span>Personal Information</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>Employee ID</label>
+                                            <input type="text" class="form-control" th:field="*{empid}" readonly>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>Full Name</label>
+                                            <input type="text" class="form-control" th:field="*{fullname}" placeholder="Enter full name" name="fullname" required>
+                                        </div>
+                                        	<div class="col-md-4 mb-3">
+                                            <label>Gender</label>
+                                            <select class="form-select" th:field="*{gender}" name="gender"  readonly>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label>Age</label>
+                                            <input type="number" class="form-control" name="age" th:field="*{age}" min="18" max="70">
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label>Mobile Number</label>
+                                            <input type="text" class="form-control" name="mobno" th:field="*{mobno}" maxlength="10" placeholder="Enter mobile number">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><span class="section-icon"><i class="bi bi-briefcase"></i></span>Employment Details</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <label>Employee Grade</label>
+                                            <select class="form-select" th:field="*{empgrade}" name="empgrade">
+                                                <option value="Grade-A">Grade-A</option>
+                                                <option value="Grade-B">Grade-B</option>
+                                                <option value="Grade-C">Grade-C</option>
+                                                <option value="Grade-D">Grade-D</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label>Designation</label>
+                                            <select class="form-select" th:field="*{designation}" name="designation">
+                                                <option value="Project Manager">Project Manager</option>
+                                                <option value="HR Manager">HR Manager</option>
+                                                <option value="Team Lead">Team Lead</option>
+                                                <option value="Senior Software Engineer">Senior Software Engineer</option>
+                                                <option value="Software Engineer">Software Engineer</option>
+                                                <option value="QA Engineer">QA Engineer</option>
+                                                <option value="System Administrator">System Administrator</option>
+                                                <option value="Trainee Software Engineer">Trainee Software Engineer</option>
+                                                <option value="Junior Developer">Junior Developer</option>
+                                                <option value="Intern">Intern</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label>Date of Joining</label>
+                                            <input type="date" class="form-control" th:field="*{joiningdate}" name="joiningdate">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions d-flex justify-content-end gap-2">
+                                <a href="/manageemployee" class="btn btn-secondary px-4"><i class="bi bi-arrow-left me-2"></i>Cancel</a>
+                                <button type="reset" class="btn btn-warning px-4"><i class="bi bi-arrow-counterclockwise me-2"></i>Reset</button>
+                                <button type="submit" class="btn btn-success px-4"><i class="bi bi-check-circle me-2"></i>Update Employee</button>
+                                <a th:href="@{/deleteemp(empid=${employee.empid})}" class="btn btn-danger px-4" onclick="return confirm('Are you sure to remove this employee?')">Delete Employee</a>
+                                
+                           </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

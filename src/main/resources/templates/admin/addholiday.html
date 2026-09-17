@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/admin_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Change Password</title>
+		<th:block id="style">
+			 <style>
+			 	.card{
+					background: #F8F5FF;
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:0.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+	 			}
+	 			.table-header{
+				    background:linear-gradient(90deg,#2563EB,#3B82F6);				
+				}				
+				.table-header th{				
+				    color:#fff;
+				    border:none;
+				    padding:16px;
+				    font-weight:600;				
+				}				
+				.card{				
+				    border-radius:18px;				
+				}
+				.form-control,.form-select{				
+				    height:48px;				
+				}				
+				textarea.form-control{				
+				    height:auto;				
+				}				
+				.table tbody td{				
+				    padding:18px;				
+				}				
+				.table tbody tr:hover{				
+				    background:#F7FAFF;				
+				}				
+				.btn{				
+				    border-radius:10px;				
+				}				
+				.badge{				
+				    padding:8px 12px;
+				    font-size:13px;				
+				}
+				.page-title h3 { 
+					color: #1E293B; 
+					font-weight: 700; 
+				} 
+				.page-title p { 
+					color: #64748B; 
+				} 
+				.card-header { 
+					background: #ffffff; 
+					border-bottom: 1px solid #E5E7EB; 
+					padding: 18px 25px; 
+				} 
+				.card-header h5 { 
+					color: #1E293B; 
+					font-weight: 600; 
+				} 
+				label { 
+					font-size: 14px; 
+					color: #64748B; 
+					font-weight: 600; 
+					margin-bottom: 7px; 
+				}
+				.calendar-preview { 
+					width: 100%; 
+					min-height: 350px; 
+					border: 2px dashed #CBD5E1; 
+					border-radius: 16px; 
+					display: flex; 
+					align-items: center; 
+					justify-content: center; 
+					background: #F8FAFC; 
+					overflow: hidden; 
+				} 
+				.calendar-preview img { 
+					max-width: 100%; 
+					max-height: 600px; 
+					object-fit: contain; 
+					border-radius: 12px; 
+				} 
+				.upload-icon { 
+					font-size: 50px; 
+					color: #94A3B8; 
+				} 
+				.upload-text { 
+					color: #64748B; 
+					margin-top: 10px; 
+				} 
+				.btn { 
+					border-radius: 10px; 
+					font-weight: 500; 
+				} 
+				@media (max-width: 768px) {
+				 .calendar-preview { 
+				 	min-height: 250px; 
+				 } 
+				 .form-actions .btn { 
+				 	width: 100%; 
+				 	margin-bottom: 8px; 
+				 } 
+				 }
+	 		</style>
+	 		
+		</th:block>
+	</head>
+	<body id="main">
+		
+    <div class="container-fluid py-4">
+
+    <!-- Page Header -->
+    <div class="card shadow border-0 rounded-4 mb-4">
+        <div class="card-header bg-primary text-white py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="mb-1"><i class="bi bi-calendar-event-fill me-2"></i>Holiday Management</h3>
+                    <p class="mb-0 opacity-75">Manage holidays that will appear in the Employee Holiday Calendar.</p>
+                </div>
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addHolidayModal"><i class="bi bi-plus-circle-fill me-2"></i>Add Holiday</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div class="container-fluid py-4">
+    	<div class="card"> 
+    		<div class="card-header"> 
+    			<h5 class="mb-0"> <i class="bi bi-calendar3 text-primary me-2"></i> Holiday Calendar </h5> 
+    		</div> 
+    		<div class="card-body p-4"> 
+    			<form action="/upcalender" method="post" enctype="multipart/form-data">
+    				<div class="mb-4"> 
+	    				<label for="calendarImage" class="btn btn-primary px-4">
+				            <i class="bi bi-upload me-2"></i>
+				            Upload Calender
+				        </label>													
+				        <input type="file" id="calendarImage"  name="file" class="d-none">    					 
+    				</div>
+    				<div class="calendar-preview mb-4" id="previewBox"> 
+    					<div class="text-center" id="previewPlaceholder"> 
+    						<i class="bi bi-calendar3 upload-icon"></i> 
+    						<div class="upload-text"> 
+    							Calendar preview will appear here 
+    						</div> 
+    					</div> 
+    					<img id="calendarPreview" src="" alt="Calendar Preview" style="display:none;"> 
+    				</div>
+    				<div class="form-actions d-flex justify-content-end gap-2"> 
+    					<button type="reset" class="btn btn-warning px-4" id="resetBtn"> <i class="bi bi-arrow-counterclockwise me-2"></i> Reset </button> 
+    					<button type="submit" class="btn btn-success px-4"> <i class="bi bi-cloud-upload-fill me-2"></i> Upload Calendar </button> 
+    				</div> 
+    			</form> 
+    		</div> 
+    	</div> 
+    </div>
+    
+        <!-- Recent Holidays -->
+
+    <div class="card shadow border-0 rounded-4 mt-4">
+        <div class="card-header bg-white">
+            <h4><i class="bi bi-list-check text-primary me-2"></i>Recent Holidays</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead class="table-primary">
+	                    <tr>
+	                        <th>Date</th>
+	                        <th>Holiday</th>
+	                        <th>Type</th>
+	                        <th>Action</th>
+	                    </tr>
+                    </thead>
+                    <tbody id="holidayTable">
+					    <tr>
+					        <td>15 Aug 2026</td>
+					        <td>
+					            <strong>Independence Day</strong>
+					        </td>
+					        <td>
+					            <span class="badge bg-success">2026</span>
+					        </td>
+					        <td>
+					            <button class="btn btn-sm btn-outline-primary me-1">
+					                <i class="bi bi-pencil-fill"></i>
+					            </button>
+					
+					            <button class="btn btn-sm btn-outline-danger"
+					                    onclick="return confirm('Are you sure you want to delete this holiday?')">
+					                <i class="bi bi-trash-fill"></i>
+					            </button>
+					        </td>
+					    </tr>
+					
+					    <tr>
+					        <td>02 Oct 2026</td>
+					        <td>
+					            <strong>Gandhi Jayanti</strong>
+					        </td>
+					        <td>
+					            <span class="badge bg-primary">2026</span>
+					        </td>
+					        <td>
+					            <button class="btn btn-sm btn-outline-primary me-1">
+					                <i class="bi bi-pencil-fill"></i>
+					            </button>
+					
+					            <button class="btn btn-sm btn-outline-danger">
+					                <i class="bi bi-trash-fill"></i>
+					            </button>
+					        </td>
+					    </tr>
+					
+					    <tr>
+					        <td>05 Sep 2026</td>
+					        <td>
+					            <strong>Teacher's Day</strong>
+					        </td>
+					        <td>
+					            <span class="badge bg-warning text-dark">2026</span>
+					        </td>
+					        <td>
+					            <button class="btn btn-sm btn-outline-primary me-1">
+					                <i class="bi bi-pencil-fill"></i>
+					            </button>
+					
+					            <button class="btn btn-sm btn-outline-danger">
+					                <i class="bi bi-trash-fill"></i>
+					            </button>
+					        </td>
+					    </tr>
+					
+					</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addHolidayModal" tabindex="-1"aria-labelledby="addHolidayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <!-- Modal Header -->
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="addHolidayModalLabel"><i class="bi bi-calendar-plus-fill me-2"></i>Add Holiday</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Form -->
+            <form action="/adholi" method="post">
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label for="holidayDate" class="form-label">Holiday Date</label>
+                        <input type="date" class="form-control" id="holidayDate" name="hddate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="holidayName" class="form-label">Holiday Name</label>
+                        <input type="text" class="form-control" id="holidayName" name="hdname" placeholder="Enter holiday name"required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="session" class="form-label">Session</label>
+                        <select class="form-select" id="session" name="session" required>
+                            <option value="">Select Session</option>
+                            <option value="2025-2026">2026-27</option>
+                            <option value="2026-2027">2027-28</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 px-4 pb-4">
+                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal"><i class="bi bi-x-circle me-2"></i>Cancel</button>
+                    <button type="submit" class="btn btn-success px-4"><i class="bi bi-check-circle-fill me-2"></i>Add Holiday</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+			
+		<script>
+	 		$(document).ready(function () {
+	 			$("#calendarImage").change(function () {
+	 		        var file = this.files[0];
+	 		        if (file) {
+	 		            var reader = new FileReader();
+	 		            reader.onload = function (e) {
+	 		                $("#calendarPreview").attr("src", e.target.result).show();
+	 		                $("#previewPlaceholder").hide();
+	 		            };
+	 		            reader.readAsDataURL(file);
+	 		        }
+	 		    });
+	 		});
+		</script>	
+	</body>
+</html>

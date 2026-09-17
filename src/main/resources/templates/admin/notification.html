@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/admin_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Admin - Nofication Section</title>
+		<th:block id="style">
+			 <style>
+			 	.card{
+					background:  #F8F5FF;
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:0.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+	 			}
+	 			.card-header h3{
+				    font-size:28px;
+				}				
+				.form-control{
+				    border-radius:12px;
+				    padding:14px;
+				    font-size:15px;
+				}				
+				.form-control:focus{
+				    box-shadow:none;
+				    border-color:#0d6efd;
+				}				
+				.btn{
+				    border-radius:10px;
+				    padding:10px 22px;
+				    font-weight:600;
+				}
+				/* Card */
+				.notification-card{
+				    border: none;
+				    border-radius: 18px;
+				    overflow: hidden;
+				    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+				}				
+				/* Header */
+				.table-header{
+				    background: linear-gradient(90deg,#2563eb,#3b82f6);
+				}				
+				.table-header th{
+				    color: #fff;
+				    font-weight: 600;
+				    border: none;
+				    padding: 16px;
+				    letter-spacing: .4px;
+				}				
+				/* Body */
+				.table tbody td{
+				    padding: 18px 16px;
+				    vertical-align: middle;
+				    border-color:#eef2f7;
+				}				
+				.table tbody tr{
+				    transition:.25s;
+				}				
+				.table tbody tr:nth-child(even){
+				    background:#f8fbff;
+				}				
+				.table tbody tr:hover{
+				    background:#eaf3ff;
+				    transform:scale(1.003);
+				}				
+				/* Message */
+				.message{
+				    font-weight:500;
+				    color:#374151;
+				}				
+				/* Date Badge */
+				.date-badge{
+				    background:#eef4ff;
+				    color:#2563eb;
+				    padding:6px 12px;
+				    border-radius:20px;
+				    font-size:13px;
+				    font-weight:600;
+				}				
+				/* Buttons */
+				.action-btn{
+				    width:38px;
+				    height:38px;
+				    border-radius:10px;
+				    display:inline-flex;
+				    align-items:center;
+				    justify-content:center;
+				    transition:.3s;
+				}
+			 </style>
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container py-4">
+			<div class="row">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-10">
+					    <!-- Add Notification Card -->
+				    <div class="card shadow-sm border-0 rounded-4">				
+				        <div class="card-header bg-white border-0 pt-4 pb-0">
+				            <h3 class="fw-bold mb-1"><i class="bi bi-megaphone-fill text-primary me-2"></i>Add Notification</h3>
+				            <p class="text-muted mb-3">Publish notifications for all employees.</p>
+				        </div>				
+				        <div class="card-body">				
+				            <form method="post" action="/notifies">				
+				                <div class="mb-4">				
+				                    <label class="form-label fw-semibold">Notification Message</label>				
+				                    <textarea class="form-control" name="message" rows="3" placeholder="Write notification here..." required></textarea>				
+				                </div>				
+				                <div class="text-end">				
+				                    <button type="reset" class="btn btn-light px-4 me-2"><i class="bi bi-arrow-counterclockwise"></i>Reset</button>				
+				                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-send-fill"></i>Publish Notification</button>				
+				                </div>				
+				            </form>				
+				        </div>				
+				    </div>
+				</div>				
+				<div class="col-lg-1"></div>								
+			</div>
+		</div>
+		<div class="container-fluid pb-4">				
+		    <div class="card shadow-sm border-0 rounded-4">		
+		        <div class="card-header bg-white border-0 pt-4">		
+		            <h3 class="fw-bold mb-1"><i class="bi bi-bell-fill text-primary me-2"></i>All Notifications</h3>		
+		            <p class="text-muted mb-0">Recently published notifications.</p>		
+		        </div>		
+		        <div class="card-body">
+		            <div class="table-responsive">
+		                <table class="table align-middle table-hover">
+		                    <thead class="table-header">
+							    <tr>
+							        <th>#</th>
+							        <th>Notification</th>
+							        <th>Published On</th>
+							        <th class="text-center">Action</th>
+							    </tr>
+							</thead>
+		                    <tbody>
+		                        <tr th:each="s,o:${nlist}">
+								    <td><strong th:text="${o.count}">1</strong></td>						
+								    <td>
+								        <div class="message">
+								        	<p th:text="${s.message}"></p>
+								        </div>
+								    </td>						
+								    <td>
+								        <span class="date-badge" th:text="${s.addedon}">27 Jul 2026</span>
+								    </td>						
+								    <td class="text-center"><a class="btn action-btn delete-btn" th:href="@{/delnoti(id=${s.nid})}"  onclick="return confirm('Are you sure you want to delete this notification?')"><i class="bi bi-trash"></i></a></td>								
+								</tr>	
+		                    </tbody>		
+		                </table>		
+		            </div>		
+		        </div>		
+		    </div>		
+		</div>
+	</body>
+</html>

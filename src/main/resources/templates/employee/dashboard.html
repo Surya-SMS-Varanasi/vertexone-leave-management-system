@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/employee_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Dashboard</title>
+		<th:block id="style">
+			 <style>
+			 	.card{
+					background:white;
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+	 			}
+	 			
+			 </style>
+		</th:block>
+	</head>
+	<body id="main">
+		<!-- Card start -->
+		<div class="container mt-3 mb-3">
+			<div class="row g-3">
+				<div class="col-lg-3 col-md-6 ">
+					<div class="card" style="padding:20px; border-radius:25px;">
+						<div class="d-flex align-items-center">
+							<div class=" me-3 text-center">
+								<i class="bi bi-calendar-week text-success fs-1"></i>
+							</div>
+							<div class="text-center">
+								<h1 class="fw-bold" th:text="${remBal}"> 18</h1>
+								<h6 class="fw-semibold">Total Leave Balance</h6>
+								<p>Days Available</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 ">
+					<div class="card" style="padding:20px; border-radius:25px;">
+						<div class="d-flex align-items-center">
+							<div class=" me-3 text-center">
+								<i class="bi bi-clock text-warning fs-1"></i>
+							</div>
+							<div class="text-center">
+								<h1 class="fw-bold" th:text="${pending}"> 02</h1>
+								<h6 class="fw-semibold">Pending Request</h6>
+								<p>Awaiting approvals</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 ">
+					<div class="card" style="padding:20px; border-radius:25px;">
+						<div class="d-flex align-items-center">
+							<div class=" me-3 text-center">
+								<i class="bi bi-check2-circle text-primary fs-1"></i>
+							</div>
+							<div class="text-center">
+								<h1 class="fw-bold" th:text="${approved}"> 15</h1>
+								<h6 class="fw-semibold">Approved Leaves</h6>
+								<p>This year</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 ">
+					<div class="card" style="padding:20px; border-radius:25px;">
+						<div class="d-flex align-items-center">
+							<div class=" me-3 text-center">
+								<i class="bi bi-x-circle text-danger fs-1"></i>
+							</div>
+							<div class="text-center">
+								<h1 class="fw-bold" th:text="${rejected}"> 01</h1>
+								<h6 class="fw-semibold">Rejected Leaves</h6>
+								<p>This year</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Holiday status table -->
+			<div class="container-fluid">
+				<div class="row">
+				<!-- Holiday status table -->
+					<div class="col-lg-7 col-md-12">
+						<div class="card" style="min-height: 350px;">
+							<div class="row">
+								<div class="col-sm-12">
+									<h4>Recent Leave Applications</h4>
+								</div>
+							</div>
+							<hr/>
+							
+							<div class="table-responsive">
+								<table class="table table-hover align-middle">
+									<thead class="table-light">
+										<tr>
+											<th>Leave Types</th>
+											<th>From</th>
+											<th>To</th>
+											<th>Days</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="e:${lst}">
+											<td th:text="${e.leavetype}">Casual Leave</td>
+											<td th:text="${e.fromdate}"> 10 Jul 2026</td>
+											<td th:text="${e.todate}"> 11 Jul 2026</td>
+											<td th:text="${e.noofdays}"> 2 </td>
+											<td><span class="badge text-light" th:text="${e.status}" th:classappend="${e.status == 'pending'} ? ' bg-warning text-dark' : (${e.status == 'Approved'} ? ' bg-success' : (${e.status == 'Rejected'} ? ' bg-danger' : ' bg-secondary'))">Approved</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				<!-- Holidays -->
+					<div class="col-lg-5 col-md-12">
+						<div class="card" style="min-height:350px;">
+							<div class="row">
+								<div class="col-7">
+									<h4>Upcoming Holidays</h4>
+								</div>
+								<div class="col-5">
+									<a class="btn btn-outline-primary ms-4" href="/calendar">Calendar</a>
+								</div>
+							</div>
+							<hr/>
+						<!-- Holidays dates -->
+							<div class="row my-3" th:each="s,o : ${hlist}">
+								<div class="col-3 d-flex align-items-center justify-content-center">
+									<div class="bg-info text-center text-light h-100 w-50 d-flex align-items-center justify-content-center" style="border-radius:10px;"  th:classappend="${o.index == 0} ? ' bg-info' : (${o.index == 1} ? ' bg-warning' : (${o.index == 2} ? ' bg-secondary' :' bg-success'))" >
+										<h4 th:text="${s.day}">15</h4>
+									</div>
+									
+								</div>
+								<div class="col-9">
+									<h6 class="mb-0 fw-semibold"  th:text="${s.hdname}">Independence Day</h6>	
+		                            <small class="text-muted" th:text="${s.formattedDate}">Friday, 15 Aug 2026</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!-- Holiday status table -->
+				</div>
+			</div>
+	</body>	
+</html>

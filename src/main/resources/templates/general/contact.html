@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/general_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>VertexOne Software Solutions - Home</title>
+		<th:block id="style">
+			<style>
+				.form-card{
+					background:white;
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.form-card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+	 			}
+				 .form-control,.form-select{
+		            height:48px;
+		            border-radius:10px;
+		        }
+		
+		        .form-label{
+		            font-weight:600;
+		        }
+		        
+		         textarea.form-control{
+		            height:150px;
+		            resize:none;
+		        }	
+		        .btn-send{
+		            height:50px;
+		            border-radius:10px;
+		            font-size:17px;
+		        }
+			    .icon-circle{
+		 			width:15px;
+		 			height:15px;
+		 			margin:auto;
+		 			background: #EAF2FF;
+		 			border-radius: 50%;
+		 			display:flex;
+		 			align-items:center;
+		 			justify-content: center;
+		 		}
+		 		.icon-circle i{
+		    		font-size:34px;
+		    		color:#2563EB;
+				}
+				
+			</style>
+		</th:block>
+	</head>
+	<body id="main">
+		<!-- Introduction Image  Starts -->
+				<div class="row">
+					<div class="col-sm-12" style="height: 350px; background-image:url('assets/images/contact-hero.png'); background-size:cover; background-position:center; background-repeat: no-repeat;">
+						<p class="h1 my-5 py-4 pt-5 px-5 mb-1 pb-0 fw-semibold">Contact Us</p>
+						<p class="py-1 px-5 pb-3" style="letter-spacing: 0.05em;">
+							Have questions Suggestions, or need support? Our team is <br/>
+                    		ready to assist you. Reach out to us and we'll get back<br/>
+                    		to you as soon as possible.
+						<p>
+						<div class="d-flex flex-wrap gap-4 my-4 px-5 pb-2">
+							<div>
+								 <i class="bi bi-headset text-primary fs-4 me-2"></i>
+                        		 <span class="fw-semibold bg-primary-subtle text-dark">Quick Response</span>
+							</div>
+							<div>
+		                        <i class="bi bi-shield-check text-primary fs-4 me-2"></i>
+		                        <span class="fw-semibold bg-primary-subtle text-dark">Reliable Support</span>
+		                    </div>
+		                    <div>
+		                        <i class="bi bi-people-fill text-primary fs-4 me-2"></i>
+		                        <span class="fw-semibold bg-primary-subtle text-dark">Always here for you</span>
+		                    </div>
+						</div>
+					</div>
+				</div>
+			<!-- Introduction Image  Ends -->
+			<!-- Contact us form starts -->
+				<div class="container my-5">
+					<div class="row g-3">
+						<div class="col-lg-8 col-md-12">
+							<div class="form-card h-100">
+								<h4 style=" display:inline-block; border-bottom:3px solid blue; padding-bottom:8px;">Send a message</h4>
+								<form action="/contsend" method="post">
+									<div class="row pt-4">									
+										<div class="col-lg-6 col-sm-12">
+											<label class="form-label">Full Name</label>
+                        					<input type="text" class="form-control" name="name" placeholder="Enter Full Name" required>
+										</div>
+										<div class="col-lg-6 col-sm-12">
+											<label class="form-label">Email Id</label>
+                        					<input type="email" class="form-control" name="email" placeholder="abc@mail.com" required>
+										</div>									
+									</div>
+									<div class="row pt-4">									
+										<div class="col-lg-6 col-sm-12">
+											<label class="form-label">Contact No</label>
+                        					<input type="text" class="form-control" name="mobno" maxlength="13" placeholder="+91 963542 84548" required>
+										</div>
+										<div class="col-lg-6 col-sm-12">
+											<label class="form-label">Subject</label>
+                        					<input type="text" class="form-control" placeholder="Reguarding leave" required>
+										</div>									
+									</div>
+									<div class="row pt-4">									
+										<div class="col-lg-12 col-sm-12">
+											<label class="form-label">Message</label>
+											<textarea class="form-control" name="message"></textarea>
+										</div>									
+									</div>
+									<div class="row pt-4">									
+										<div class="col-sm-12 text-center">
+											<button class="btn btn-primary btn-send w-50" type="submit">
+												<i class="bi bi-send-fill  me-2"></i>
+												Send Message											
+											</button>
+										</div>									
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-12">
+							<div class="form-card h-100">
+								<h4 style="display:inline-block; border-bottom:3px solid blue; padding-bottom:8px;">Contact Info</h4>
+								 <p class="my-4">Reach out to our HR team for leave policies,technical support or general enquiries.</p>
+								
+								<div class="row mt-3 pb-3" style="border-bottom:2px solid lightgrey;">
+									<div class="col-3 icon-circle">
+										<i class="bi bi-telephone"></i>
+									</div>
+									<div class="col-9">
+										<h5>Phone</h5>
+										<p>+91 85641 97853<br/>Mon-Fri, 9:30 AM - 6:30 PM</p> 
+									</div>
+								</div>
+								
+								<div class="row pt-4 pb-3" style="border-bottom:2px solid lightgrey;">
+									<div class="col-3 icon-circle">
+										<i class="bi bi-envelope text-success"></i>
+									</div>
+									<div class="col-sm-9">
+										<h5>Email</h5>
+										<p>support@vertexone.com<br/>We reply within 24 hours</p> 
+									</div>
+								</div>
+								
+								<div class="row pt-4 pb-3">
+									<div class="col-3 icon-circle">
+										<i class="bi bi-geo-alt text-warning"></i>
+									</div>
+									<div class="col-9">
+										<h5>Address</h5>
+										<p>4th floor, Curla Complex,<br/>Ramgarh,Kaimur-821110, India</p> 
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<!-- Contact us form ends -->
+			<!-- Geo Location starts -->
+				<div class="container mb-5">
+					<div class="row">
+						<div class="form-card h-100">
+							<h4 style="display:inline-block; border-bottom:3px solid blue; padding-bottom:8px;">Our location</h4><br/><br/>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d5362.231758055043!2d83.65599355979097!3d25.29185634699993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1784568258949!5m2!1sen!2sin" style="border:0; width:100%; height:350px; border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" alt="Geo-location"></iframe>
+						</div>
+					</div>
+				</div>
+			<!-- Geo Location ends -->
+	</body>
+</html>

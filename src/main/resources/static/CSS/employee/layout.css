@@ -1,0 +1,170 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing:border-box;
+	font-family: 'Inter', sans-serif;
+}
+     html, body {
+          background: #F4F7FC;
+      }
+ .sidebar {
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 280px;
+          height: 100vh;
+          background: linear-gradient(180deg, #1F2937 0%, #111827 100%);
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+          scrollbar-width:none;
+          box-shadow: 8px 0 25px rgba(0, 0, 0, .15);
+      }
+      .profile {
+          text-align: center;
+          padding: 10px 20px 30px;
+      }
+      .profile img {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          border-radius: 50%;
+          border: 3px solid rgba(255, 255, 255, .2);
+      }
+      .profile h5 {
+          margin-top: 10px;
+          margin-bottom: 3px;
+          font-size:18px;
+          font-weight: 600;
+          letter-spacing:0.3px;
+      }
+      .profile p {
+          color: #94A3B8;
+          font-size: 13px;
+          margin-bottom: 3px;
+      }
+      .profile .dept {
+          color: #22C55E;
+          font-size: 13px;
+      }
+      .sidebar .nav-link {
+          color: #dbeafe;
+          padding: 10px 18px;
+          margin: 5px 15px;
+          border-radius: 12px;
+          transition: .3s;
+          font-size: 15px;
+          display: flex;
+          align-items: center;
+      }
+      .sidebar .nav-link i {
+          width: 28px;
+          font-size: 18px;
+      }
+      .sidebar .nav-link:hover {
+          background: rgba(255,255,255,.12);
+  		border-left: 4px solid #22C55E;
+          color: #fff;
+          transform: translateX(6px);
+      }
+      .sidebar .nav-link.active {
+		    background: rgba(34,197,94,.18);
+		    border-left: 4px solid #22C55E;
+		    color: #22C55E;        
+          font-weight: 600;
+          box-shadow: 0 10px 25px rgba(255, 255, 255, .2);
+      }
+      .logout {
+          margin-top: auto;
+          padding-bottom: 20px;
+      }
+      .logout .nav-link {
+          color: #ffb4b4;
+      }
+      .logout .nav-link:hover {
+          background: #dc2626;
+          color: white;
+      }
+      .header{
+      	  margin-left: 280px;
+          padding: 0px;
+          transition:0.3s ease;
+      }
+      .top-header{
+          background:#fff;
+          border-radius:16px;
+          padding:14px 22px;
+          border:1px solid #E5E7EB;
+          position: sticky;
+		    top: 0;
+		    z-index: 999;
+      }
+
+      .company-name{
+          color:#1E293B;
+          letter-spacing:.5px;
+      }
+      .clock-card{
+          background:#F4F7FC;
+          border:1px solid #E5E7EB;
+          border-radius:12px;
+          padding:10px 18px;
+          display:flex;
+          align-items:center;
+          gap:12px;
+          min-width:220px;
+      }
+      .clock-card i{
+          font-size:22px;
+          color:#16A34A;
+      }
+      .main-content {
+          margin-left: 280px;
+          padding: 20px;
+          min-height:calc(100vh - 150px);
+          overflow-y:auto;
+          transition:0.3s ease;
+      }
+.footer{
+    background:#F8FAFC;
+    border-top:1px solid #E2E8F0;
+    color:#64748B;
+    padding:15px 25px;
+    margin-left: 280px;
+    font-size:14px;
+    transition:0.3s ease;
+}
+.developer-link {
+			    color: #adb5bd;
+			    text-decoration: none;
+			    margin-left: 8px;
+			    transition: 0.3s;
+			}
+			
+			.developer-link:hover {
+			    color: #fff;
+			}
+      @media(max-width:992px) {
+          .sidebar {
+              width: 90px;
+          }
+          .logo span, .profile h5, .profile p, .profile .dept, .sidebar .nav-link span {
+              display: none;
+          }
+          .profile img {
+              width: 60px;
+              height: 60px;
+          }
+          .main-content,.footer, .header {
+              margin-left: 90px;
+          }
+          .sidebar .nav-link {
+              justify-content: center;
+          }
+          .sidebar .nav-link i {
+              width: auto;
+              font-size: 22px;
+          }
+      }
+      

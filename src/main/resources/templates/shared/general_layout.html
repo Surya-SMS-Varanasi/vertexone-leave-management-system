@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html th:fragment="layout(title,content,style)">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="bootstrap/icons/bootstrap-icon.min.css">
+		<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="jQuery/jquery-4.0.0.min.js"></script>
+		<!--  --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<title th:replace="${title}">VertexOne Software Solutions</title>
+		<th:block th:replace="${style}"></th:block>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing:border-box;
+			font-family: 'Inter', sans-serif;
+		}
+		body,html{
+			min-height: 100vh;
+			overflow-x:hidden;
+			overflow-y:visible;
+		}
+		h4{
+			font-weight:600;
+			font-size:1.8rem;
+		}
+		/* Nav Bar code starts*/
+		.navbar{
+    		background:#ffffff;
+    		font-family: 'Inter', sans-serif;
+   			box-shadow:0 2px 15px rgba(0,0,0,.08);
+    		border-bottom:1px solid #e5e7eb;
+		}
+
+		.navbar-brand{
+		    color:#0F172A;
+		    font-weight:700;
+		}
+
+		.nav-link{
+		    color:#374151;
+		    font-weight:400;
+		    transition:0.3s;
+		}
+
+		.dropdown-item:hover, .nav-link:hover{
+		    color:royalblue;
+		}
+		/* Nav Bar code Ends*/
+		/* Modal code starts*/
+		
+		.card{
+					background:white;
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				
+		.form-control{
+		            height:48px;
+		            border-radius:10px;
+		        }
+		
+		        .form-label{
+		            font-weight:600;
+		        }
+		        
+		         textarea.form-control{
+		            height:150px;
+		            resize:none;
+		        }	
+		        .btn-send{
+		            height:50px;
+		            border-radius:10px;
+		            font-size:17px;
+		        }
+		option{
+			font-size:15px;
+		}
+		
+		#mybtn{
+			position:fixed;
+			top:80%;
+			transform:rotate(-90deg);
+			left:-55px;
+		}
+		/* Modal code Ends*/
+		
+		
+		/*Footer starts*/
+		footer{
+		    background:#111827;
+		    padding:70px 0 25px;
+		}
+		
+		.footer-link{
+		    color:#D1D5DB;
+		    text-decoration:none;
+		    display:block;
+		    margin-bottom:12px;
+		    transition:.3s;
+		}
+		
+		.footer-link:hover{
+		    color:#2563EB;
+		    padding-left:6px;
+		    cursor:pointer;
+		}
+		
+		.social-icon{
+		    display:inline-flex;
+		    justify-content:center;
+		    align-items:center;
+		    width:42px;
+		    height:42px;
+		    border-radius:50%;
+		    background:#1F2937;
+		    color:white;
+		    text-decoration:none;
+		    margin-left:10px;
+		    transition:.3s;
+		}
+		
+		.social-icon:hover{
+		    background:#2563EB;
+		    transform:translateY(-4px);
+		}
+		.notice-bar {
+			    height: 42px;
+			    line-height: 42px;
+			    background: #f5f7fa;
+			    border-bottom: 1px solid #e1e5ea;
+			    color: #333;
+			    font-size: 16px;
+			    font-weight: 500;
+			}
+			
+			.notice-item {
+			    display: inline-flex;
+			    align-items: center;
+			    height: 42px;
+			    margin-right: 120px;
+			}
+			
+			.notice-icon {
+			    font-size: 18px;
+			    margin-right: 9px;
+			    vertical-align: middle;
+			}			
+			.notice-space {
+			    display: inline-block;
+			    width: 100px;
+			}
+			.developer-link {
+			    color: #adb5bd;
+			    text-decoration: none;
+			    margin-left: 8px;
+			    transition: 0.3s;
+			}
+			
+			.developer-link:hover {
+			    color: #fff;
+			}
+		/*footer ends*/
+		</style>
+		<script th:if="${msg}">
+			alert("[[${msg}]]")
+		</script>
+	</head>
+	<body class="bg-light">
+		<div class="container-fluid p-0">
+		
+		<!-- Navbar Starts -->
+			<div class="row">
+				<div class="col-sm-12 p-0">
+					<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  						<div class="container-fluid mx-3">
+  							<img src="assets/logo.png" style="width:39px; height:30px;"/>
+   							 <a class="navbar-brand " href="/home">VertexOne</a>
+   							 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      						 	<span class="navbar-toggler-icon"></span>
+    						</button>
+    						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+      							<ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+        							<li class="nav-item">
+          								<a class="nav-link active" aria-current="page" href="/home">Home</a>
+        							</li>
+        							<li class="nav-item">
+          								<a class="nav-link" href="/flow">Leave Workflow</a>
+        							</li>
+        							<li class="nav-item">
+          								<a class="nav-link" href="/pics">Gallery</a>
+        							</li>
+        							<li class="nav-item">
+          								<a class="nav-link" href="/policy">Leave Policy</a>
+        							</li>
+        							<li class="nav-item">
+          								<a class="nav-link" href="/contact">Contact Us</a>
+        							</li>
+        							<li class="nav-item">
+          								<a class="nav-link" href="/register">Registration</a>
+        							</li>
+        							<li class="nav-item dropdown">
+          								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          							  	Login
+          								</a>
+          								<ul class="dropdown-menu dropdown-menu-end my-2 mx-0">
+            								<li><a class="dropdown-item" href="/emplogin">Employee Login</a></li>
+            						
+            								<li><hr class="dropdown-divider"></li>
+            								<li><a class="dropdown-item" href="/adminlogin">Admin Login</a></li>
+          								</ul>
+        							</li>
+      							</ul>
+						    </div>
+						  </div>
+						</nav>
+					</div>
+				</div>
+			<!-- Navbar ends -->
+			<!-- Body Ends -->
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" id="mybtn" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: linear-gradient(180deg, #10B981, #059669);">
+				<i class="bi bi-chat-dots-fill me-2"></i>
+				  Enquire Now
+			</button>
+			
+			<!-- Body starts -->
+				<main style="min-height:400px;">
+					<div th:replace="${content}">
+					
+					</div>
+					
+				</main>
+			
+			<!-- Footer starts -->
+				<footer class="container-fluid">
+				    <div class="container">				
+				        <div class="row">				
+				            <!-- Company -->
+								<div class="col-lg-4 col-md-6 mb-4">
+									<h3 class="text-white fw-bold mb-3"> VertexOne</h3>
+									<p class="text-light">VertexOne Leave Management System is a modern HR solution designed to simplify leave requests, approvals, employee management, and reporting through a secure and efficient platform.</p>
+									<p class="text-light mb-1">
+										<i class="bi bi-envelope-fill text-primary"></i>
+        								support@vertexone.com
+									</p>
+									<p class="text-light mb-1">
+								        <i class="bi bi-telephone-fill text-primary"></i>
+								        +91 85390 83835
+								    </p>
+								    <p class="text-light">
+								        <i class="bi bi-geo-alt-fill text-primary"></i>
+								        Varanasi, Uttar Pradesh, India
+								    </p>								    
+								</div>
+				
+				            <!-- Quick Links -->				            
+								<div class="col-lg-2 col-md-6 mb-4">
+								    <h5 class="text-white mb-3">Quick Links</h5>								
+								    <ul class="list-unstyled">								
+								        <li><a href="#" class="footer-link">Home</a></li>															
+								        <li><a href="/policy" class="footer-link">Features</a></li>								
+								        <li><a href="/contact" class="footer-link">Contact</a></li>								
+								    </ul>								
+								</div>				
+				            <!-- Services -->				
+								<div class="col-lg-3 col-md-6 mb-4">
+								    <h5 class="text-white mb-3">Services</h5>								
+								    <ul class="list-unstyled">								
+								        <li><a href="/emplogin" class="footer-link">Employee Login</a></li>								
+								        <li><a href="/adminlogin" class="footer-link"> Login</a></li>								
+								        <li><a href="/register" class="footer-link">Registration</a></li>								
+								        <li><a href="/flow" class="footer-link">Leave Approval</a></li>								
+								    </ul>								
+								</div>				            			
+				            <!-- Contact -->				
+				            <div class="col-lg-3 col-md-6 mb-4">
+							    <h5 class="text-white mb-3">Contact Us</h5>
+							    <p class="text-light">
+							        <i class="bi bi-clock-fill text-primary"></i>
+							        Monday - Friday
+							        <br>
+							        9:00 AM - 6:00 PM
+							    </p>
+							    <p class="text-light">
+							        <i class="bi bi-envelope-fill text-primary"></i>
+							        support@vertexone.com
+							    </p>
+							    <p class="text-light">
+							        <i class="bi bi-telephone-fill text-primary"></i>
+							        +91 98765 43210
+							    </p>
+							</div>				
+				        </div>				
+				        <hr class="border-secondary my-4">				
+				        <div class="row">				
+				            <!-- Copyright -->
+							<div class="row align-items-center">
+							    <div class="col-md-6">
+								    <p class="text-light mb-0">&copy; 2026 VertexOne Leave Management System. All Rights Reserved. <a href="/devs" class="developer-link">Developer</a>
+								    </p>
+								</div>								
+							    <div class="col-md-6 text-md-end mt-3 mt-md-0">								
+							        <a href="https://wa.me/+918539083835" class="social-icon">
+							            <i class="bi bi-whatsapp"></i>
+							        </a>								
+							        <a href="https://linkedin.com/in/surya-pratap-singh-0276b43a6" class="social-icon">
+							            <i class="bi bi-linkedin"></i>
+							        </a>								
+							        <a href="https://www.instagram.com/shivam_singh_85390?igsh=cDIwa2lrenZic2J2" class="social-icon">
+							            <i class="bi bi-instagram"></i>
+							        </a>								
+							        <a href="https://github.com/Surya-SMS-Varanasi/" class="social-icon">
+							            <i class="bi bi-github"></i>
+							        </a>								
+							    </div>								
+							</div>				
+				        </div>				
+				    </div>				
+				</footer>
+			</div>
+			<!-- Modal starts -->
+			
+					
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+					    	<div class="modal-content">
+					    	<form action="/enqsend" method="post">
+					      		<div class="modal-header border-0 m-0 p-3">
+					       			<h4 id="exampleModalLabel" style=" display:inline-block; border-bottom:3px solid blue; padding-bottom:8px;" class="p-3">Send Enquiry</h4>
+					        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      		</div>
+							     <div class="modal-body">
+							     	<div class="container">
+										<div class="row g-3">
+											<div class="col-lg-12 ">
+												<div class="form-card h-100">											
+													<div class="row">									
+														<div class="col-sm-6">
+															<label class="form-label">Full Name <span style="color:red;">*</span></label>
+				                        					<input type="text" name="name" class="form-control" placeholder="Enter Full Name">
+														</div>
+														<div class="col-sm-6">														
+															<label class="form-label">Contact No </label>
+				                        					<input type="text"  name="mobno" class="form-control" placeholder="+91 963542 84548">													
+														</div>																																			
+													</div>
+													<div class="row pt-4">														
+				                        				<div class="col-sm-12">
+															<label class="form-label">Email Id <span style="color:red;">*</span></label>
+				                        					<input type="email"  name="email" class="form-control" placeholder="abc@mail.com">
+				                        				</div>																			
+													</div>
+													<div class="row pt-4">
+														<div class="col-sm-12">
+															<label class="form-label">Subject <span style="color:red;">*</span></label>
+				                        					<select class="form-select" name="topic" style="font-size:18px;">
+									                            <option selected disabled>Select Subject</option>
+															    <option value="General Enquiry">General Enquiry</option>
+															    <option value="Leave Policy">Leave Policy</option>
+															    <option value="Leave Application Issue">Leave Application Issue</option>
+															    <option value="Leave Balance Query">Leave Balance Query</option>
+															    <option value="Leave Approval Status">Leave Approval Status</option>
+															    <option value="Technical Support">Technical Support</option>
+															    <option value="Login / Account Issue">Login / Account Issue</option>
+															    <option value="Registration Assistance">Registration Assistance</option>
+															    <option value="Document Submission">Document Submission</option>
+															    <option value="Other">Other</option>
+									                        </select>
+														</div>
+													</div>
+													<div class="row pt-4">	
+														<div class="col-sm-12">
+															<label class="form-label">Message <span style="color:red;">*</span></label>
+															<textarea class="form-control"  name="querymsg"></textarea>
+														</div>									
+													</div>										
+												</div>
+											</div>
+								      	</div>
+								     </div>
+								 </div>
+						      <div class="modal-footer">
+						      	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						     	 <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+						      </div>
+							</form>
+						</div>
+					</div>
+				</div>
+			<!-- Modal ends -->
+	</body>
+</html>

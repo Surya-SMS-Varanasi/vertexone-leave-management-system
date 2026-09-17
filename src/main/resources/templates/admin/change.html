@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/admin_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Change Password</title>
+		<th:block id="style">
+			 <style>
+			 	.card{
+					background: linear-gradient(135deg, #F9FAFB 0%, #DDE7F3 100%);
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:0.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+	 			}
+	 			.btn{
+	 				font-size:5px;
+	 			}
+	 			.form-label{
+	 				font-weight:600;
+	 			}
+		        .form-control{
+		        	height:48px;
+		            border-radius:10px;
+		        }	
+		        .btn-send{
+		            height:50px;
+		            border-radius:10px;
+		            font-size:17px;
+		        }
+	 			
+			 </style>
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container my-3">
+			<div class="row">
+				<div class="col-lg-2"></div>
+				<div class="col-lg-8">
+					<div class="card h-100" style="padding-bottom:10px;">
+						<div class="text py-2">
+							<h4 style=" display:inline-block; border-bottom:3px solid #F59E0B; padding-bottom:8px;">Change Password</h4>
+						</div>
+						<div class="row g-2">
+							<div class="col-lg-6">
+								<img src="assets/images/admin-change.png" class="img-fluid h-95 w-100">
+							</div>
+							<div class="col-lg-6 py-4">
+								<form action="/changemypass" method="post">
+									<div class="row ">
+										<div class="col-sm-12">
+											<label class="form-label">Current Password <span style="color:red;">*</span></label>
+											<div class="input-group">
+												<span class="input-group-text">
+													<i class="bi bi-lock"></i>
+												</span>
+												<input type="text" name="cpass" class="form-control" placeholder="Current password">
+											</div>											
+										</div>
+									</div>
+									<div class="row my-2">
+										<div class="col-sm-12">
+											<label class="form-label">New Password <span style="color:red;">*</span></label>
+											<div class="input-group">
+												<span class="input-group-text">
+													<i class="bi bi-key"></i>
+												</span>
+												<input type="text" name="npass" class="form-control" placeholder="New password">
+											</div>											
+										</div>
+									</div>
+									<div class="row my-2">
+										<div class="col-sm-12">
+											<label class="form-label">Confirm Password <span style="color:red;">*</span></label>
+											<div class="input-group">
+												<span class="input-group-text">
+													<i class="bi bi-shield-check"></i>
+												</span>
+												<input type="text" name="cfpass" class="form-control" placeholder="Confirm password">
+											</div>											
+										</div>
+									</div>
+									<div class="row my-2 mt-5 mb-2">
+										<div class="col-sm-12">
+											<div class=" d-flex gap-3 justify-content-end">
+												<button class="btn btn-danger" type="reset">Reset</button>	
+												<button class="btn btn-primary" type="submit">Update password</button>
+											</div>										
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2"></div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/employee_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Change Profile</title>
+		<th:block id="style">
+			 <style>
+			 	.card{
+					background: #F8F5FF;
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:0.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+	 			}
+	 			.form-label{
+	 				font-weight:600;
+	 			}
+		        	
+		        .btn-send{
+		            height:50px;
+		            border-radius:10px;
+		            font-size:17px;
+		        }
+		        .form-control,.form-select{				
+				    min-height:46px;				
+				    border-radius:12px;				
+				    border:1px solid #D1D5DB;				
+				}
+				.form-control:focus,.form-select:focus{				
+				    border-color:#2563EB;				
+				    box-shadow:none;				
+				}				
+				label{				
+				    font-size:14px;				
+				    color:#64748B;				
+				    font-weight:600;				
+				    margin-bottom:6px;				
+				}	
+	 			
+			 </style>
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container-fluid py-4">
+		    <div class="card shadow-sm border-0 rounded-4">		
+		        <div class="card-header bg-white py-3">
+		            <h3 class="fw-bold mb-1"><i class="bi bi-person-circle text-primary me-2"></i>Update Profile</h3>
+		            <p class="text-muted mb-0">Update your mobile number and profile picture.</p>
+		        </div>
+		
+		        <div class="card-body">
+		
+		            <form method="post"  enctype="multipart/form-data"  action="/updatepro" th:object="${emp}">
+		
+		                <div class="row">
+		                    <!-- Profile -->
+		                    <div class="col-lg-4 text-center">
+		                        <img th:src="@{${profilepic}}" class="rounded-circle shadow mb-3"  id="previewImage" style="width:180px;height:180px;object-fit:cover;">
+		                        <label for="profilePic" class="btn btn-primary px-4"><i class="bi bi-upload me-2" title="Upload a new image, in case of changing."></i>Upload Photo</label>													
+						        <input type="file" id="profilePic"  name="profilepic" class="d-none">
+		                    </div>
+		                    <div class="col-lg-8">
+		                        <div class="row">
+		                            <div class="col-md-6 mb-3">
+		                                <label class="form-label fw-semibold">Employee ID</label>
+		                                <input type="text" th:field="*{empid}" class="form-control"  disabled>
+		                            </div>
+		                            <div class="col-md-6 mb-3">
+		                                <label class="form-label fw-semibold">Full Name</label>
+		                                <input type="text" th:field="*{fullname}" class="form-control" readonly>
+		                            </div>
+		                            <div class="col-md-4 mb-3">
+		                                <label class="form-label fw-semibold">Gender</label>
+		                                <input type="text" th:field="*{gender}" class="form-control" readonly>
+		                            </div>
+		                            <div class="col-md-4 mb-3">
+		                                <label class="form-label fw-semibold">Age</label>
+		                                <input type="text" th:field="*{age}" class="form-control" readonly>
+		                            </div>
+		                            <div class="col-md-4 mb-3">
+		                                <label class="form-label fw-semibold">Grade</label>
+		                                <input type="text" th:field="*{empgrade}" class="form-control" readonly>
+		                            </div>
+		                            <div class="col-md-4 mb-3">
+		                                <label class="form-label fw-semibold">Designation</label>
+		                                <input type="text" th:field="*{designation}" class="form-control" readonly>
+		                            </div>
+		                            <div class="col-md-4 mb-3">
+		                                <label class="form-label fw-semibold">Joining Date</label>
+		                                <input type="text" th:field="*{joiningdate}"class="form-control" readonly>
+		                            </div>
+		                            <div class="col-md-4 mb-3">
+		                                <label class="form-label fw-semibold">Mobile Number <span class="badge bg-danger">Editable</span></label>
+		                                <input type="text" th:field="*{mobno}" class="form-control" name="mobno">
+		                            </div>
+		                        </div>
+		                        <hr>
+		                        <button type="submit" class="btn btn-success px-4"><i class="bi bi-check-circle-fill me-2"></i>Update Profile</button>
+		                    </div>
+		                </div>
+		            </form>
+		        </div>
+		    </div>
+		</div>
+		<script>
+				 $(document).ready(function () {
+					 //image viewer
+					    $("#profilePic").change(function () {
+					        var file = this.files[0];
+					        if (file) {
+					            var reader = new FileReader();
+					            reader.onload = function (e) {
+					                $("#previewImage").attr("src", e.target.result);
+					            };
+					            reader.readAsDataURL(file);
+					        }
+					    });
+				 });
+			</script>
+	</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/admin_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Change Password</title>
+		<th:block id="style">
+			 <style>
+			 	.card{
+					background: #F8F5FF;
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:0.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+	 			}
+	 			.table-header{
+					background:linear-gradient(90deg,#2563EB,#3B82F6);					
+				}					
+				.table-header th{					
+					color:#fff;
+					padding:16px;
+					font-weight:600;
+					border:none;
+				}					
+				.table tbody td{					
+					padding:18px;
+					vertical-align:middle;					
+				}					
+				.table tbody tr:hover{					
+					background:#F7FAFF;					
+				}					
+				.card{					
+					border-radius:18px;					
+				}					
+				.form-control,.form-select{					
+					height:48px;					
+				}					
+				.input-group-text{					
+					background:#F8F9FA;
+					font-weight:600;					
+				}					
+				.badge{					
+					font-size:13px;
+					padding:8px 12px;					
+				}					
+				.btn{					
+					border-radius:10px;
+				}					
+				.alert{					
+					font-size:12px;					
+				}
+			 </style>
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container-fluid py-4">
+			<div class="row">
+				<div class="col-lg-2"></div>
+				<div class="col-lg-8">
+					<div class="card shadow border-0 rounded-4">		
+				        <div class="card-header text-white py-3" style="background:#F59E0B;">		
+				            <h3 class="mb-1">
+				                <i class="bi bi-calendar2-check-fill me-2"></i>
+				                Annual Leave Allocation
+				            </h3>		
+				            <p class="mb-0 opacity-75">Configure annual leave entitlement for employees based on Grade and Session.</p>		
+				        </div>		
+				        <div class="card-body">		
+				            <div class="alert alert-info border-0 rounded-3">		
+				                <i class="bi bi-info-circle-fill me-2"></i>		
+				                The allocated leave balance will be assigned to every employee belonging to the selected grade.		
+				            </div>
+				            <form action="/leavesection" method="post">	
+					            <div class="row">		
+					                <div class="col-md-6 mb-4">		
+					                    <label class="form-label fw-semibold">Employee Grade</label>		
+					                    <select class="form-select" name="empgrade">		
+					                        <option value="" selected readonly>Select Grade</option>		
+					                        <option value="Grade-A">Grade A</option>		
+					                        <option value="Grade-B">Grade B</option>		
+					                        <option value="Grade-C">Grade C</option>		
+					                        <option value="Grade-D">Grade D</option>		
+					                    </select>		
+					                </div>		
+					                <div class="col-md-6 mb-4">		
+					                    <label class="form-label fw-semibold">Session</label>		
+					                    <select class="form-select" name="session">		
+					                        <option value="2026-2027" selected>2026-2027</option>		
+					                        <option value="2027-2028">2027-2028</option>		
+					                    </select>		
+					                </div>		
+					            </div>		
+					            <div class="table-responsive">		
+					                <table class="table align-middle">		
+					                    <thead class="table-header">		
+					                    <tr>		
+					                        <th>Leave Type</th>		
+					                        <th width="250">Allocated Days</th>		
+					                    </tr>		
+					                    </thead>		
+					                    <tbody>		
+						                    <tr>	
+						                        <td><span class="badge bg-primary me-2">ML</span>Medical Leave</td>		
+						                        <td>		
+						                            <div class="input-group">		
+						                                <input type="number" name="allowedml" class="form-control">		
+						                                <span class="input-group-text">Days</span>		
+						                            </div>		
+						                        </td>		
+						                    </tr>		
+						                    <tr>		
+						                        <td><span class="badge bg-success me-2">EL</span>Earned Leave</td>
+						                        <td>		
+						                            <div class="input-group">		
+						                                <input type="number" name="allowedel" class="form-control">		
+						                                <span class="input-group-text">Days</span>		
+						                            </div>		
+						                        </td>		
+						                    </tr>		
+						                    <tr>		
+						                        <td><span class="badge bg-warning text-dark me-2">CL</span>Casual Leave</td>		
+						                        <td>		
+						                            <div class="input-group">		
+						                                <input type="number" name="allowedcl" class="form-control">		
+						                                <span class="input-group-text">Days</span>		
+						                            </div>		
+						                        </td>		
+						                    </tr>
+						                    <tr>		
+						                        <td><span class="badge bg-info me-2">CCL</span>Child Care Leave</td>		
+						                        <td>		
+						                            <div class="input-group">		
+						                                <input type="number" name="allowedccl" class="form-control">		
+						                                <span class="input-group-text">Days</span>		
+						                            </div>		
+						                        </td>		
+						                    </tr>		
+						                    <tr>		
+						                        <td><span class="badge bg-danger me-2">MAT</span>Maternity Leave</td>		
+						                        <td>		
+						                            <div class="input-group">		
+						                                <input type="number" name="allowedmaternityleave" class="form-control">		
+						                                <span class="input-group-text">Days</span>		
+						                            </div>		
+						                        </td>		
+						                    </tr>		
+						                    <tr>		
+						                        <td><span class="badge bg-dark me-2">RH</span>Restricted Holiday</td>		
+						                        <td>		
+						                            <div class="input-group">		
+						                                <input type="number" name="allowedrh" class="form-control">		
+						                                <span class="input-group-text">Days</span>		
+						                            </div>		
+						                        </td>		
+						                    </tr>		
+					                    </tbody>		
+					                </table>		
+					            </div>
+					            <div class="text-end mt-4">		
+				                	<button type="reset" class="btn btn-outline-secondary px-4 me-2"><i class="bi bi-arrow-counterclockwise me-1"></i>Reset</button>		
+				                	<button type="submit" class="btn btn-primary px-5"><i class="bi bi-check-circle-fill me-2"></i>Allot Now</button>		
+				            	</div>
+				            </form>				
+				        </div>		
+				    </div>
+				</div>
+				<div class="col-lg-2"></div>
+			</div>		    		
+		</div>
+	</body>
+</html>

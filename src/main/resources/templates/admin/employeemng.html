@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/admin_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Admin - Employee Management</title>
+		<th:block id="style">
+			<style>
+				.card{
+				    border:none;
+				    border-radius:18px;
+				    transition:0.3s ease;
+				}				
+				.card:hover{				
+				    transform:translateY(-2px);				
+				    box-shadow:0 12px 25px rgba(0,0,0,.08);				
+				}
+				.card-header{				
+				    background:#ffffff;				
+				    border-bottom:1px solid #E5E7EB;				
+				    padding:18px 25px;				
+				}
+				.card-header h5, .card-header h6{				
+				    font-weight:600;				
+				    color:#1E293B;				
+				}
+				.table{				
+				    margin-bottom:0;				
+				}
+				.table thead{
+				    background:#EEF2FF;
+				}				
+				.table thead th{
+				    color:#334155;
+				    font-weight:600;				
+				    white-space:nowrap;				
+				    border-bottom:none;				
+				}				
+				.table tbody td{				
+				    color:#475569;				
+				    vertical-align:middle;				
+				    border-color:#EEF2F7;				
+				}				
+				.table-hover tbody tr:hover{				
+				    background:#F8FAFC;				
+				}				
+				.modal img{				
+				    object-fit:cover;				
+				}
+				.form-control,.form-select{				
+				    min-height:46px;				
+				    border-radius:12px;				
+				    border:1px solid #D1D5DB;				
+				}
+				.form-control:focus,.form-select:focus{				
+				    border-color:#2563EB;				
+				    box-shadow:none;				
+				}				
+				label{				
+				    font-size:14px;				
+				    color:#64748B;				
+				    font-weight:600;				
+				    margin-bottom:6px;				
+				}
+				.btn{				
+				    border-radius:10px;				
+				    font-weight:500;				
+				}				
+				.badge{				
+				    padding:8px 14px;				
+				    font-size:13px;				
+				    font-weight:600;				
+				}
+						
+				.text-muted{				
+				    color:#64748B !important;				
+				}
+			</style>
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container-fluid py-4">
+		    <!-- Page Header -->
+		    <div class="d-flex justify-content-between align-items-center mb-4">		
+		        <div>
+		            <h3 class="fw-bold mb-1"><i class="bi bi-people-fill text-primary me-2"></i>Employee Management</h3>		
+		            <p class="text-muted mb-0">View and update employee information.</p>
+		        </div>		
+		        <span class="badge bg-success fs-6 px-3 py-2">Total Employees : <span>154</span></span>		
+		    </div>
+		    <!-- Employee Table -->	
+		    <div class="card">	
+		    <div class="card shadow border-0 rounded-4">		
+		        <div class="card-header bg-white py-3">		
+		            <h5 class="mb-0 fw-semibold"><i class="bi bi-person-lines-fill text-primary me-2"></i>Employee List</h5>		
+		        </div>		
+		        <div class="card-body p-0">		
+		            <div class="table-responsive">		
+		                <table class="table table-hover align-middle mb-0">		
+		                    <thead class="table-light">		
+			                    <tr>		
+			                        <th>Serial No</th>				
+			                        <th>Employee</th>		
+			                        <th>Email</th>		
+			                        <th>Grade</th>		
+			                        <th>Designation</th>		
+			                        <th class="text-center">Action</th>		
+			                    </tr>		
+		                    </thead>		
+		                    <tbody>
+		                    	<tr th:each="s,o:${list}">			
+			                        <td th:text="${o.count}">1</td>			
+			                        <td><strong th:text="${s.fullname}">Shivam Singh</strong></td>			
+			                        <td th:text="${s.empid}">shivam@gmail.com</td>			
+			                        <td th:text="${s.empgrade}">Grade-A</td>
+			                        <td th:text="${s.designation}">Java Developer</td>						
+			                        <td class="text-center"><a th:href="@{/edit(id=${s.empid})}" class="btn btn-primary btn-sm rounded-pill"><i class="bi bi-pencil-square me-1"></i>Edit</a></td>
+			                    </tr>		
+		                    </tbody>		
+		                </table>		
+		            </div>		
+		        </div>	
+		    </div>
+		</div>
+	</div>
+	</body>
+</html>

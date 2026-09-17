@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/employee_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Application</title>
+		<th:block id="style">
+			 <style>
+			 	.card{
+					background:white;
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+	 			}
+	 			.option{
+	 				font-size:5px;
+	 			}
+	 			.form-label{
+	 				font-weight:600;
+	 			}
+		        .form-control{
+		        	height:48px;
+		            border-radius:10px;
+		        }	
+		        textarea.form-control{
+		            height:75px;
+		            resize:none;
+		        }
+		        .btn-send{
+		            height:50px;
+		            border-radius:10px;
+		            font-size:17px;
+		        }
+				.information{
+					border:2px dashed #d6d6d6;
+					 border-radius:20px;
+					background: #fafbff;
+					padding:20px;
+				}
+				
+			 </style>
+			 
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container py-2">
+			<div class="row g-4">
+				<div class="col-lg-8">
+					<div class="card">
+						<div class="head">
+							<h4 style=" display:inline-block; border-bottom:3px solid blue; padding-bottom:8px;">Leave Application</h4>								
+						</div>
+						<div class="form">
+							<form method="post" action="/leaveapply">
+								<div class="row pt-4">									
+									<div class="col-lg-12">
+										<label class="form-label">Leave Type <span style="color:red;">*</span></label>
+                       					<select class="form-select form-select-lg" name="leavetype" style="font-size:18px;">
+				                            <option>Select Leave Type</option>
+				                            <option value="Casual-leave">Casual Leave</option>
+				                            <option value="Medical-leave">Medical Leave</option>
+				                            <option value="Earned-leave">Earned Leave</option>
+				                            <option value="Child-care-leave">Child care Leave</option>
+				                            <option value="Restricted-holiday">Restricted Holiday</option>
+				                            <option value="Maternity-leave">Maternity Leave</option>
+				                        </select>
+									</div>									
+								</div>
+								<div class="row pt-4">									
+									<div class="col-sm-6">
+										<label class="form-label">From Date <span style="color:red;">*</span></label>
+                       					<input type="date" id="fromdate" name="fromdate" class="form-control" placeholder="Select from date">
+									</div>
+									<div class="col-sm-6">
+										<label class="form-label">To Date <span style="color:red;">*</span></label>
+                       					<input type="date" id="todate" name="todate" class="form-control" placeholder="Select to date">
+									</div>									
+								</div>
+								<div class="row pt-4">									
+									<div class="col-lg-12">
+										<label class="form-label">Number of Days <span style="color:red;">*</span></label>
+                       					<input type="number" id="noofdays" name="noofdays" class="form-control" placeholder="0 Days" readonly>
+									</div>									
+								</div>
+								<div class="row pt-4">									
+									<div class="col-sm-12">
+										<label class="form-label">Reason for leave <span style="color:red;">*</span></label>
+										<textarea class="form-control" name="reason" placeholder="Reason is mandotary for leave application"></textarea>
+									</div>									
+								</div>
+								<div class="row pt-4 ">									
+									<div class="col-sm-12 d-flex justify-content-end gap-3">
+										<button class="btn btn-light btn-send w-15" type="reset">
+											<i class="bi bi-arrow-clockwise  me-2"></i>
+											Cancel											
+										</button>
+										<button class="btn btn-primary btn-send w-15" type="submit">
+											<i class="bi bi-send-fill  me-2"></i>
+											Apply Leave											
+										</button>
+									</div>									
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="card">
+						<div class="text">
+							<h4 style=" display:inline-block; border-bottom:3px solid tomato; padding-bottom:8px;">Leave Balance</h4>
+						</div>
+						<div class="table">
+							<div class="d-flex justify-content-between py-2">	
+		                        <span>Casual Leave</span>	
+		                        <strong><span th:text="${list.remainingcl}"></span> Days</strong>	
+	                    	</div>
+	                    	<div class="d-flex justify-content-between py-2">	
+		                        <span>Medical Leave</span>	
+		                        <strong> <span th:text="${list.remainingml}"></span> Days</strong>	
+	                    	</div>
+	                    	<div class="d-flex justify-content-between py-2">	
+		                        <span>Earned Leave</span>	
+		                        <strong><span th:text="${list.remainingel}"></span> Days</strong>	
+	                    	</div>
+	                    	<div class="d-flex justify-content-between py-2">	
+		                        <span>Restricted Holiday</span>	
+		                        <strong> <span th:text="${list.remainingrh}"></span> Days</strong>	
+	                    	</div>
+	                    	<div class="d-flex justify-content-between py-2">	
+		                        <span>Child Care Leave</span>	
+		                        <strong> <span th:text="${list.reamainingccl}"></span> Days</strong>	
+	                    	</div>
+	                    	<div class="d-flex justify-content-between py-2">	
+		                        <span>Maternity Leave</span>	
+		                        <strong> <span th:text="${list.remaingmaternityleave}"></span> Days</strong>	
+	                    	</div>
+	                    	<hr/>
+	                    	<div class="d-flex justify-content-between py-2">	
+		                        <span>Total Remaining</span>	
+		                        <strong style="color:royalblue"><span style="color:royalblue" th:text="${list.remainingcl + list.remainingrh + list.remainingml + list.remainingel + list.reamainingccl + list.remaingmaternityleave}"></span> Days</strong>	
+	                    	</div>
+						</div>
+						
+						<div class="information">
+							<div class="inf d-flex ">
+								<i class="bi bi-info text-primary fw-semibold px-2" style="border-radius:20px; font-size:18px;"></i>
+								<strong>Note</strong>
+							</div>							
+							<p>Please ensure all information is correct before submitting your leave request.</p>
+						</div>							
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+				$(document).ready(function () {				
+					 $("#fromdate, #todate").change(function () {
+					        var from = $("#fromdate").val();
+					        var to = $("#todate").val();
+					        if (from != "" && to != "") {
+					            var fromDate = new Date(from);
+					            var toDate = new Date(to);
+					            if (toDate < fromDate) {
+					                alert("To Date cannot be before From Date");
+					                $("#todate").val("");
+					                $("#noofdays").val("");
+					                return;
+					            }
+					             var diff = toDate - fromDate;
+					            var days = (diff / (1000 * 60 * 60 * 24)) + 1;
+					            $("#noofdays").val(days);
+					        }
+					    });				
+					});
+				</script>
+	</body>
+</html>

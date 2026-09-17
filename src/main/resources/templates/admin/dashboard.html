@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/admin_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Dashboard</title>
+		<th:block id="style">
+			 <style>
+			 	.dashboard-card{
+				    background:#fff;
+				    border:none;
+				    border-radius:18px;
+				    padding:22px;
+				    box-shadow:0 5px 18px rgba(0,0,0,.06);
+				    transition:.35s;
+				    overflow:hidden;
+				    position:relative;
+				}				
+				.dashboard-card:hover{
+				    transform:translateY(-8px);
+				    box-shadow:0 18px 40px rgba(0,0,0,.12);
+				}				
+				.dashboard-card .icon-box{
+				    width:65px;
+				    height:65px;
+				    border-radius:16px;
+				    display:flex;
+				    align-items:center;
+				    justify-content:center;
+				    font-size:28px;
+				    color:#fff;
+				}				
+				.dashboard-card h6{
+				    color:#64748B;
+				    font-size:15px;
+				    margin-bottom:8px;
+				    font-weight:600;
+				}				
+				.dashboard-card h2{
+				    font-size:34px;
+				    font-weight:700;
+				    margin:0;
+				    color:#111827;
+				}				
+				.dashboard-card hr{
+				    margin:18px 0;
+				    border-color:#E5E7EB;
+				}				
+				.dashboard-card a{
+				    text-decoration:none;
+				    color:#2563EB;
+				    font-size:14px;
+				    font-weight:600;
+				}				
+				.dashboard-card a:hover{
+				    color:#1D4ED8;
+				}				
+				/* Icon Colors */				
+				.bg-blue{
+				    background:#2563EB;
+				}				
+				.bg-green{
+				    background:#16A34A;
+				}				
+				.bg-red{
+				    background:#DC2626;
+				}				
+				.bg-orange{
+				    background:#F59E0B;
+				}				
+				.bg-purple{
+				    background:#7C3AED;
+				}				
+				.bg-cyan{
+				    background:#0891B2;
+				}				
+				.bg-pink{
+				    background:#DB2777;
+				}				
+				.bg-dark{
+				    background:#1F2937;
+				}	 			
+			 </style>
+			 
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 mb-4">	
+				    <div class="dashboard-card">	
+				        <div class="d-flex justify-content-between align-items-center">	
+				            <div>	
+				                <h6>Total Employees</h6>	
+				                <h2 th:text="${totalemp}">128</h2>	
+				            </div>	
+				            <div class="icon-box bg-blue">	
+				                <i class="bi bi-people-fill"></i>	
+				            </div>	
+				        </div>	
+				        <hr>	
+				        <a href="/manageemployee">View Details<i class="bi bi-arrow-right"></i></a>	
+				    </div>	
+				</div>
+				<div class="col-lg-3 col-md-6 mb-4">	
+				    <div class="dashboard-card">	
+				        <div class="d-flex justify-content-between align-items-center">	
+				            <div>	
+				                <h6>Applied Leaves</h6>	
+				                <h2 th:text="${totalleave}">14</h2>	
+				            </div>	
+				            <div class="icon-box bg-orange">	
+				                <i class="bi bi-hourglass-split"></i>	
+				            </div>	
+				        </div>	
+				        <hr>	
+				        <a href="/manageleave">View Details<i class="bi bi-arrow-right"></i></a>	
+				    </div>	
+				</div>
+				<div class="col-lg-3 col-md-6 mb-4">	
+				    <div class="dashboard-card">	
+				        <div class="d-flex justify-content-between align-items-center">	
+				            <div>	
+				                <h6>Approved Leaves</h6>	
+				                <h2 th:text="${appliedleave}">89</h2>	
+				            </div>	
+				            <div class="icon-box bg-green">	
+				                <i class="bi bi-check-circle-fill"></i>	
+				            </div>	
+				        </div>	
+				        <hr>	
+				        <a href="/manageleave">View Details<i class="bi bi-arrow-right"></i></a>	
+				    </div>	
+				</div>
+				<div class="col-lg-3 col-md-6 mb-4">	
+				    <div class="dashboard-card">	
+				        <div class="d-flex justify-content-between align-items-center">	
+				            <div>	
+				                <h6>New Contacts</h6>	
+				                <h2 th:text="${totalcont}">09</h2>	
+				            </div>	
+				            <div class="icon-box bg-red">	
+				                <i class="bi bi-telephone-fill"></i>	
+				            </div>	
+				        </div>	
+				        <hr>	
+				        <a href="/cont">View Details<i class="bi bi-arrow-right"></i></a>	
+				    </div>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-md-6 mb-4">	
+				    <div class="dashboard-card">	
+				        <div class="d-flex justify-content-between align-items-center">	
+				            <div>	
+				                <h6>Holidays</h6>	
+				                <h2 th:text="${totalholi}">18</h2>	
+				            </div>	
+				            <div class="icon-box bg-purple">	
+				                <i class="bi bi-calendar-event-fill"></i>	
+				            </div>	
+				        </div>	
+				        <hr>	
+				        <a href="/addholiday">View Details<i class="bi bi-arrow-right"></i></a>	
+				    </div>	
+				</div>
+				<div class="col-lg-3 col-md-6 mb-4">	
+				    <div class="dashboard-card">	
+				        <div class="d-flex justify-content-between align-items-center">	
+				            <div>	
+				                <h6>Notifications</h6>	
+				                <h2 th:text="${totalnoti}">07</h2>	
+				            </div>	
+				            <div class="icon-box bg-cyan">	
+				                <i class="bi bi-megaphone-fill"></i>	
+				            </div>	
+				        </div>	
+				        <hr>	
+				        <a href="/notify">View Details<i class="bi bi-arrow-right"></i></a>	
+				    </div>	
+				</div>
+				<div class="col-lg-3 col-md-6 mb-4">	
+				    <div class="dashboard-card">	
+				        <div class="d-flex justify-content-between align-items-center">	
+				            <div>	
+				                <h6>Feedback Recieved</h6>	
+				                <h2 th:text="${totalfeed}">42</h2>	
+				            </div>	
+				            <div class="icon-box bg-pink">	
+				                <i class="bi bi-chat-left-text-fill"></i>	
+				            </div>	
+				        </div>	
+				        <hr>	
+				        <a href="/feedadmin">View Details<i class="bi bi-arrow-right"></i></a>	
+				    </div>	
+				</div>
+				<div class="col-lg-3 col-md-6 mb-4">	
+				    <div class="dashboard-card">	
+				        <div class="d-flex justify-content-between align-items-center">	
+				            <div>	
+				                <h6>Pending Enquiries</h6>	
+				                <h2 th:text="${totalenq}">11</h2>	
+				            </div>	
+				            <div class="icon-box bg-dark">	
+				                <i class="bi bi-envelope-paper-fill"></i>	
+				            </div>	
+				        </div>	
+				        <hr>	
+				        <a href="/enq">View Details<i class="bi bi-arrow-right"></i></a>	
+				    </div>	
+				</div>
+			</div>
+		</div>
+	</body>	
+	
+</html>

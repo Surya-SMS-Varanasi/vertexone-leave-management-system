@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/admin_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Admin - Leave Management</title>
+		<th:block id="style">
+			<style>
+				.card{
+				    border:none;
+				    border-radius:18px;
+				    transition:.3s;
+				}				
+				.card:hover{				
+				    transform:translateY(-2px);				
+				    box-shadow:0 .7rem 2rem rgba(0,0,0,.08);				
+				}				
+				.table{				
+				    margin-bottom:0;				
+				}				
+				.table thead{				
+				    background:#EEF2FF;				
+				}				
+				.table thead th{				
+				    font-weight:600;				
+				    color:#334155;				
+				    border-bottom:none;				
+				    white-space:nowrap;				
+				}				
+				.table tbody td{				
+				    vertical-align:middle;				
+				    color:#475569;				
+				    border-color:#EEF2F7;				
+				}				
+				.table-hover tbody tr:hover{				
+				    background:#F8FAFC;				
+				}				
+				.btn{				
+				    border-radius:10px;				
+				    font-weight:500;				
+				}
+				.badge{				
+				    padding:8px 14px;				
+				    font-size:13px;				
+				    font-weight:600;				
+				}				
+				.modal-content{				
+				    border-radius:22px;				
+				    overflow:hidden;				
+				}				
+				.modal-header{				
+				    padding:18px 25px;				
+				    border:none;				
+				}				
+				.modal-header h4{				
+				    font-weight:700;				
+				}				
+				.modal-footer{			
+				    border:none;				
+				    padding:20px 25px;
+				}
+				label{				
+				    color:#64748B;
+				    font-size:14px;				
+				    margin-bottom:4px;				
+				}				
+				p{				
+				    margin-bottom:0;				
+				    font-weight:500;				
+				}
+				.card .border{				
+				    border:1px solid #E5E7EB !important;				
+				    transition:0.3s;				
+				}				
+				.card .border:hover{				
+				    background:#F8FAFC;				
+				    transform:translateY(-3px);				
+				}
+				.text-muted{
+				
+				    color:#64748B !important;
+				
+				}
+				.status-badge {
+				    min-width: 90px;
+				    display: inline-block;
+				    text-align: center;
+				    font-size: 13px;
+				    font-weight: 600;
+				    padding: 8px 14px;
+				}	
+				@media(max-width:992px){				
+				    .modal-dialog{				
+				        margin:.5rem;				
+				    }				
+				    .modal-body{				
+				        padding:20px;				
+				    }				
+				}				
+				@media(max-width:768px){				
+				    .table{				
+				        min-width:1000px;				
+				    }				
+				    .modal-footer{				
+				        display:flex;				
+				        flex-direction:column;				
+				        gap:10px;				
+				    }				
+				    .modal-footer .btn{				
+				        width:100%;				
+				    }				
+				}
+			</style>
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container-fluid py-4">
+		    <div class="d-flex justify-content-between align-items-center mb-4">
+		        <div>
+		            <h3 class="fw-bold mb-1"><i class="bi bi-calendar-check-fill text-primary me-2"></i>Manage Leave Applications</h3>
+		            <p class="text-muted mb-0">Review and manage employee leave requests.</p>
+		        </div>		
+		        <div>
+		            <span class="badge bg-warning fs-6 px-3 py-2"> Pending : <span th:text="${pending}"></span></span>
+		        </div>
+		    </div>
+		    <!-- Leave Table -->
+		    <div class="card shadow border-0 rounded-4">		
+		        <div class="card-header bg-white py-3">		
+		            <h5 class="mb-0 fw-semibold"><i class="bi bi-list-check me-2 text-primary"></i>Leave Applications</h5>		
+		        </div>		
+		        <div class="card-body p-0">
+		            <div class="table-responsive">
+		                <table class="table table-hover align-middle mb-0">
+		                    <thead class="table-light">
+			                    <tr>
+			                        <th>Serial No</th>
+			                        <th>Employee ID</th>
+			                        <th>Leave Type</th>
+			                        <th>Days</th>
+			                        <th>Applied On</th>
+			                        <th>Status</th>
+			                        <th class="text-center">Action</th>
+			                    </tr>
+		                    </thead>
+		                    <tbody>
+			                    <tr th:each="s,o:${ldet}">
+			                        <td th:text="${o.count}">1</td>
+			                        <td>
+			                            <strong th:text="${s.empid}">Shivam Singh</strong>
+			                            <br>
+			                            <small class="text-muted" th:text="${s.fullname}">
+			                                EMP-101
+			                            </small>
+			                        </td>
+			                        <td th:text="${s.leavetype}"></td>
+			                        <td th:text="${s.noofdays}">3</td>
+			                        <td th:text="${s.appliedon}">18-Jul-2026</td>
+			                        <td>
+			                        		<small class="badge status-badge" th:text="${s.status}" th:classappend="${s.status == 'pending'} ? ' bg-warning text-dark' : (${s.status == 'Approved'} ? ' bg-success' : (${s.status == 'Rejected'} ? ' bg-danger' : ' bg-secondary'))"></small>
+			                        </td>
+			                        <td class="text-center">
+			                            <button class="btn btn-primary btn-sm rounded-pill viewBtn" data-bs-toggle="modal" 
+			                            data-bs-target="#leaveModal"
+			                            th:data-name="${s.fullname}"
+			                            th:data-leaveid="${s.leaveid}"
+								        th:data-grade="${s.empgrade}"
+								        th:data-designation="${s.designation}"
+								        th:data-email="${s.empid}"
+								        th:data-leavetype="${s.leavetype}"
+								        th:data-fromdate="${s.fromdate}"
+								        th:data-todate="${s.todate}"
+								        th:data-days="${s.noofdays}"
+								        th:data-appliedon="${s.appliedon}"
+								        th:data-reason="${s.reason}"
+								        th:data-image="@{'/employee-images/' + ${s.pic_file_name}}"
+								        th:data-approve-url="@{/approveleave(leaveid=${s.leaveid})}"
+        									th:data-reject-url="@{/declineleave(leaveid=${s.leaveid})}">
+			                            <i class="bi bi-eye-fill"></i>Review</button>
+			                        </td>
+			                    </tr>
+		                	</tbody>
+		             	</table>
+		          	</div>
+		       	</div>
+			</div>
+		 </div>
+		<div class="modal fade"  id="leaveModal" tabindex="-1" aria-hidden="true">
+		    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+		        <div class="modal-content border-0 shadow-lg rounded-4">
+		            <div class="modal-header bg-primary text-white">
+		                <h4 class="modal-title fw-bold"><i class="bi bi-calendar-check-fill me-2"></i>Leave Application Review</h4>
+		            </div>
+		            <div class="modal-body p-4">
+		                <div class="row">
+		                    <div class="col-lg-3">
+		                        <div class="card border-0 shadow-sm rounded-4">
+		                            <div class="card-body text-center">
+		                                <img id="empImage" src="" class="rounded-circle border border-4 border-primary shadow" width="130" height="130" style="object-fit:cover;">
+		                                <h4 class="fw-bold mt-3 mb-1" id="empName">Shivam Singh</h4>
+		                                <p class="text-muted mb-2" id="empGrade">Grade A</p>
+		                                <span class="badge bg-primary px-3 py-2" id="empDesignation">Software Engineer</span>
+		                                <h6 class=" badge bg-warning text-muted mt-2" id="empEmail">surya@gmail.com</h6>
+		                            </div>
+		                        </div>
+s		                    </div>
+	                        <div class="col-lg-9">
+	                        	<div class="row">
+	                        		<div class="col-md-12">
+	                        			<div class="card border-0 shadow-sm rounded-4">	
+				                            <div class="card-header bg-light">	
+				                                <h5 class="fw-bold mb-0">Leave Details</h5>	
+				                            </div>	
+				                            <div class="card-body">	
+				                                <div class="row">	
+				                                    <div class="col-md-3 mb-3">	
+				                                        <label class="fw-semibold">Leave Type</label>	
+				                                        <p id="leaveType">Casual Leave</p>	
+				                                    </div>	
+				                                    <div class="col-md-2 mb-3">	
+				                                        <label class="fw-semibold">From Date</label>
+				                                        <p id="fromDate">20-Jul-2026</p>	
+				                                    </div>	
+				                                    <div class="col-md-2 mb-3">	
+				                                        <label class="fw-semibold">To Date</label>	
+				                                        <p id="toDate">22-Jul-2026</p>	
+				                                    </div>	
+				                                    <div class="col-md-2">	
+				                                        <label class="fw-semibold"> Days</label>
+				                                        <p id="leaveDays">3 Days</p>	
+				                                    </div>	
+				                                    <div class="col-md-2">	
+				                                        <label class="fw-semibold">Applied On</label>	
+				                                        <p id="appliedOn">18-Jul-2026</p>	
+				                                    </div>	
+				                                </div>	
+				                            </div>	
+				                        </div>
+	                        		</div>
+	                        	</div>
+		                        <div class="row">
+									<div class="col-md-12">
+										<div class="row">
+											<div class="card border-0 shadow-sm rounded-4 mt-4">		
+				                            	<div class="card-header bg-light">		
+				                                	<h5 class="fw-bold mb-0">Leave Reason</h5>		
+				                            	</div>		
+				                            	<div class="card-body">
+				                            		<p id="leaveReason">
+					                            		Need leave to attend my sister's wedding ceremony.
+						                                I'll be available over phone in case of emergency.			
+					                            
+				                            		</p>		
+					                            </div>			
+					                        </div>
+										</div>		                        	
+									</div>
+		               		 	</div>	
+		                    </div>	
+									
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-success px-4" id="approveBtn"><i class="bi bi-check-circle-fill me-2"></i>Approve</button>
+				                	<button type="button" class="btn btn-danger px-4" id="rejectBtn"><i class="bi bi-x-circle-fill me-2"></i>Reject</button>
+
+				                <button class="btn btn-secondary px-4" data-bs-dismiss="modal">Close</button>
+				            </div>
+				        </div>
+				     </div>
+		        </div>
+		    </div>
+		</div>
+		<script>
+			$(document).ready(function () {
+			    $(".viewBtn").click(function () {
+			    	$("#empName").text($(this).data("name"));
+			        $("#empGrade").text($(this).data("grade"));
+			        $("#empDesignation").text($(this).data("designation"));
+			        $("#empEmail").text($(this).data("email"));
+			        $("#leaveType").text($(this).data("leavetype"));
+			        $("#fromDate").text($(this).data("fromdate"));
+			        $("#toDate").text($(this).data("todate"));
+			        $("#leaveDays").text($(this).data("days") + " Days");
+			        $("#appliedOn").text($(this).data("appliedon"));
+			        $("#leaveReason").text($(this).data("reason"));
+			        $("#empImage").attr("src", $(this).data("image"));
+			        
+			        // Get URLs generated by Thymeleaf
+			        var approveUrl = $(this).data("approve-url");
+			        var rejectUrl = $(this).data("reject-url");
+
+			        // Set URLs on modal buttons
+			        $("#approveBtn").off("click").on("click", function () {
+			            window.location.href = approveUrl;
+			        });
+
+			        $("#rejectBtn").off("click").on("click", function () {
+			            window.location.href = rejectUrl;
+			        });
+
+			        
+			    });
+			});
+	</script>
+	</body>
+</html>

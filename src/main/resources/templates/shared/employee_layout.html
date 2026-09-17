@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html th:fragment="layout(title,body,style)">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title th:replace="${title}">Employee Sidebar</title>
+	    <th:block th:replace="${style}"></th:block>
+	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+	    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	   	<link rel="stylesheet" href="CSS/employee/layout.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="jQuery/jquery-4.0.0.min.js"></script>
+		<script>
+			$(document).ready(function () {			
+			    var current = window.location.pathname;			
+			    $(".nav-link").removeClass("active");			
+			    $(".nav-link").each(function () {
+			        if ($(this).attr("href") === current) {
+			            $(this).addClass("active");
+			        }
+			    });
+			
+			});
+			
+		</script>
+	    <script th:if="${msg}">
+	    	alert('[[${msg}]]')
+	    </script>
+	    
+	   	
+	</head>
+<body>
+    <div class="sidebar">
+        
+        <!-- Profile -->
+        <div class="profile">
+            <img th:src="@{/employee-images/{img}(img=${session.emp.pic_file_name})}" alt="Profile">
+            <h5 th:text="${session.emp.fullname}"></h5>
+           <!--  -- <h5  th:text="${session.uname}"></h5>-->
+            <p th:text="${session.emp.empgrade}">Software Engineer</p>
+            <div class="dept">
+                <span th:text="${session.emp.designation}">Information Technology</span>
+            </div>
+        </div>
+        <!-- Navigation -->
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="/empdashboard" id="dashboardLink">
+                    <i class="bi bi-grid"></i>
+                    <span>Employee Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/leaveapplication" id="applyleaveLink">
+                    <i class="bi bi-pencil-square"></i>
+                    <span>Apply Leave</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/leavebal" id="leavebalanceLink">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Leave Balance</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/calendar" id="calendarLink">
+                    <i class="bi bi-calendar-event"></i>
+                    <span>Holiday Calendar</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/feedbac" id="feedbackLink">
+                    <i class="bi bi-chat-dots"></i>
+                    <span>Feedback</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/updateprofile" id="updateprofLink">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Update Profile</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="changepass">
+                    <i class="bi bi-key" id="changepassLink"></i>
+                    <span>Change Password</span>
+                </a>
+            </li>
+        </ul>
+        <!-- Logout -->
+        <div class="logout">
+            <a class="nav-link" href="/logout">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+    <div class="header">
+    	<div class="container-fluid py-3">
+		    <div class="top-header shadow-sm">	
+		        <div class="row align-items-center">	
+		            <!-- Company Name -->
+		            <div class="col-lg-6 col-md-6 col-12 text-center text-md-start mb-3 mb-md-0">
+		                <h4 class="fw-bold mb-1 company-name">
+		                    <i class="bi bi-building me-2"></i>VertexOne
+		                </h4>
+		                <small class="text-secondary">Employee Leave Management System</small>
+		            </div>
+		            <!-- Clock -->
+		            <div class="col-lg-6 col-md-6 col-12">	
+		                <div class="d-flex justify-content-md-end justify-content-center">	
+		                    <div class="clock-card">	
+		                        <i class="bi bi-clock-history me-2"></i>	
+		                        <div>
+		                            <h6 class="mb-0 fw-semibold" id="time">10:30:45 AM</h6>	
+		                            <small class="text-muted " id="date">Monday, 21 July 2026</small>	
+		                        </div>	
+		                    </div>	
+		                </div>	
+		            </div>	
+		        </div>	
+		    </div>
+		</div>
+    </div>
+    
+    <div class="main-content">
+        <div th:replace="${body}">
+        
+        </div> 
+    </div>
+    <footer class="footer mt-auto">
+	    <div class="container-fluid">
+	        <div class="row align-items-center">	
+	            <!-- Left -->
+	            <div class="col-lg-6 col-md-6 col-12 text-center text-md-start mb-2 mb-md-0">
+	                <span>
+	                    © 2026 <strong>VertexOne</strong>. All Rights Reserved.
+	                </span>
+	            </div>	
+	            <!-- Right -->
+	            <div class="col-lg-6 col-md-6 col-12 text-center text-md-end">
+	                <span>
+	                    Version 1.0.0 | Developed by <strong>VertexOne Software Solutions</strong><a href="/devs" class="developer-link">Developer</a>
+	                </span>
+	            </div>
+	
+	        </div>
+	    </div>
+	</footer>
+	<script>
+	    	function getTime(){
+	    		d = new Date();
+	    		document.getElementById("time").innerHTML = d.toLocaleTimeString();
+	    		const options = { weekday: "long", day: "numeric", month: "long", year: "numeric"};
+	    		document.getElementById("date").innerHTML = d.toLocaleDateString("en-IN", options);
+	    	}
+	    	getTime();
+	    	setInterval(getTime,1000);
+	   </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

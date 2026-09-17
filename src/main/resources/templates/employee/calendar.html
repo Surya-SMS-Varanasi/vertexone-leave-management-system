@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/employee_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Calendar</title>
+		<th:block id="style">
+			 <style>
+			 	.card {
+		            border: none;
+		            border-radius: 18px;
+		            transition: .3s;
+		        }
+		        .card:hover {
+		            box-shadow: 0 15px 35px rgba(0, 0, 0, .08);
+		        }
+		        .card-header {
+		            padding: 18px 24px;
+		        }		
+		        /* Calendar */		
+		        #calendarBody {
+		            display: flex;
+		            flex-wrap: wrap;
+		        }		
+		        .calendar-day {		
+		            width: 14.285%;
+		            padding: 8px;		
+		        }
+		        .day-box {		
+		            background: white;		
+		            border: 1px solid #e9ecef;		
+		            border-radius: 14px;		
+		            min-height: 95px;		
+		            padding: 10px;		
+		            transition: 0.25s;		
+		            cursor: pointer;		
+		            position: relative;		
+		        }
+		        .day-box:hover {		
+		            background: #f8fbff;		
+		            border-color: dodgerblue;		
+		            transform: translateY(-3px);		
+		        }
+		        /* Date Number */		
+		        .day-number {		
+		            width: 38px;		
+		            height: 38px;		
+		            border-radius: 50%;		
+		            display: flex;		
+		            justify-content: center;		
+		            align-items: center;		
+		            font-weight: 600;		
+		        }		
+		        /* Today */		
+		        .today .day-number {		
+		            background: royalblue;		
+		            color: white;		
+		        }
+		        .holiday-blue {
+				    background: #E8F0FE;
+				    color: #2563EB;
+				}
+				
+				.holiday-purple {
+				    background: #F3E8FF;
+				    color: #7E22CE;
+				}
+				
+				.holiday-green {
+				    background: #DCFCE7;
+				    color: #16A34A;
+				}
+				
+				.holiday-orange {
+				    background: #FEF3C7;
+				    color: #D97706;
+				}
+		        /* Weekend */		
+		        .weekend {		
+		            background: whitesmoke;		
+		        }		
+		        /* Holiday */		
+		        .holiday .day-number {		
+		            background: crimson;		
+		            color: white;		
+		        }		
+		        .holiday-name {		
+		            font-size: 11px;		
+		            margin-top: 10px;		
+		            color: crimson;		
+		            font-weight: 600;		
+		        }
+		        /* Other Month */		
+		        .other-month {		
+		            opacity: 0.45;		
+		        }		
+		        /* Upcoming Holiday */		
+		        .holiday-item {		
+		            display: flex;		
+		            gap: 15px;		
+		            align-items: center;		
+		            padding: 15px;		
+		            border-radius: 15px;		
+		            transition: .3s;		
+		        }		
+		        .holiday-item:hover {		
+		            background: whitesmoke;		
+		        }		
+		        .holiday-icon {		
+		            width: 55px;		
+		            height: 55px;		
+		            border-radius: 50%;		
+		            display: flex;		
+		            justify-content: center;		
+		            align-items: center;		
+		            font-size: 22px;		
+		            flex-shrink: 0;		
+		        }		
+		        /* Button */		
+		        .btn {		
+		            border-radius: 10px;		
+		        }		
+		        /* Badge */		
+		        .badge {		
+		            font-weight: 500;		
+		        }		
+		        /* Month */		
+		        #monthYear {		
+		            min-width: 170px;		
+		            text-align: center;		
+		        }
+		        /* Responsive */		
+		        @media(max-width:1200px) {		
+		            .calendar-day {		
+		                width: 14.285%;		
+		            }		
+		            .day-box {		
+		                min-height: 85px;		
+		            }		
+		        }		
+		        @media(max-width:992px) {		
+		            .day-box {		
+		                min-height: 75px;		
+		                padding: 8px;		
+		            }		
+		            .day-number {		
+		                width: 34px;		
+		                height: 34px;		
+		            }		
+		        }		
+		        @media(max-width:768px) {		
+		            .calendar-day {		
+		                width: 14.285%;		
+		                padding: 4px;		
+		            }		
+		            .day-box {		
+		                min-height: 62px;		
+		                padding: 6px;		
+		                border-radius: 10px;		
+		            }		
+		            .day-number {		
+		                width: 28px;		
+		                height: 28px;		
+		                font-size: 13px;		
+		            }		
+		            .holiday-name,#todayBtn  {		
+		                display: none;		
+		            }		
+		            .holiday-icon {		
+		                width: 45px;		
+		                height: 45px;		
+		                font-size: 18px;		
+		            }		
+		        }		
+		        @media(max-width:576px) {		
+		            .card-header {		
+		                padding: 15px;		
+		            }		
+		            #monthYear {		
+		                font-size: 17px;		
+		            }		
+		            .day-box {		
+		                min-height: 50px;		
+		                padding: 4px;		
+		            }		
+		            .day-number {		
+		                width: 24px;		
+		                height: 24px;		
+		                font-size: 12px;		
+		            }	
+		            
+		            
+		            	
+		        }	
+		        
+		        .table thead th{
+    font-weight:600;
+    border-bottom:1px solid #e9ecef;
+}
+
+.table tbody tr:hover{
+    background:#f8f9fa;
+}
+
+.badge{
+    font-weight:500;
+    border-radius:20px;
+    padding:6px 10px;
+} 		
+
+.calendar-card { border: none; border-radius: 18px; box-shadow: 0 5px 20px rgba(0, 0, 0, .06); overflow: hidden; } .calendar-card .card-header { background: #ffffff; border-bottom: 1px solid #E5E7EB; padding: 18px 25px; } .calendar-card .card-header h5 { color: #1E293B; font-weight: 600; } .calendar-container { width: 100%; min-height: 400px; background: #F8FAFC; border-radius: 15px; padding: 20px; display: flex; justify-content: center; align-items: center; } .calendar-image { max-width: 100%; height: auto; max-height: 750px; object-fit: contain; border-radius: 12px; box-shadow: 0 5px 20px rgba(0, 0, 0, .08); } @media (max-width: 768px) { .calendar-container { padding: 10px; min-height: 250px; } .calendar-image { max-height: 600px; } }
+			 </style>
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container-fluid py-4">
+        <div class="row g-4">
+            <!-- Calendar -->
+            <div class="col-lg-8 col-md-12">
+                <div class="card shadow-sm border-0 rounded-4">
+                    <div class="card-header bg-white">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+                            <div>
+                                <h4 class="fw-bold mb-1">
+                                    <i class="bi bi-calendar3 text-primary me-2"></i>
+                                    Holiday Calendar
+                                </h4>
+                                <p class="text-muted mb-0">
+                                    Company Holidays & Weekends
+                                </p>
+                            </div>
+                            
+                        </div>
+                        <div th:if="${#lists.isEmpty(list)}" class="text-center py-5">
+						    <i class="bi bi-calendar-x fs-1 text-muted"></i>
+						    <h5 class="mt-3 text-muted">No Calendar Available</h5>
+						    <p class="text-muted">Admin has not uploaded a calendar yet.</p>
+						</div>
+                        <div class="calendar-card card"> 
+                        	<div class="card-body p-4"> 
+	                        	<div class="calendar-container"> 
+	                        		<img th:src="@{'/holiday-calendar/'+${list.imgname}}" alt="Holiday Calendar" class="calendar-image"> 
+	                        	</div> 
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Upcoming Holidays -->
+            <div class="col-xl-4">
+                <div class="card shadow-sm border-0 rounded-4 h-100">
+                    <div class="card-header bg-white">
+                        <h5 class="fw-bold mb-0">
+                            <i class="bi bi-stars text-warning me-2"></i>Upcoming Holidays</h5>
+                    </div>
+                    <div class="card-body">
+                    		<div th:each="s,o:${hlist}">
+                    			<div class="holiday-item">
+		                          	<div class="holiday-icon" th:classappend="${o.index == 0} ? ' holiday-blue' :(${o.index == 1} ? ' holiday-purple' :(${o.index == 2} ? ' holiday-green' : ' holiday-orange'))">
+		                                <i class="bi bi-calendar-week-fill"></i>
+		                            </div>
+		                            <div>
+		                                <h6 class="mb-1" th:text="${s.hdname}">Independence Day</h6>
+		                                <small class="text-muted" th:text="${s.formattedDate}">15 August 2026</small>
+		                                <br>
+		                               <span class="badge bg-warning mt-2" th:text="${s.session}">National Holiday</span>
+		                            </div>
+		                        </div>
+		                        <hr/>
+                    		</div>
+                        
+                       
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="card shadow-sm border-0 rounded-4 mt-4">
+
+    <div class="card-header bg-white">
+        <h5 class="fw-bold mb-0">
+            <i class="bi bi-journal-check text-primary me-2"></i>
+            Holiday Policy Notes
+        </h5>
+    </div>
+
+    <div class="card-body">
+
+        <div class="alert alert-primary border-0 mb-3">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            The holiday calendar is subject to change based on government notifications and organizational requirements.
+        </div>
+
+        <ul class="list-group list-group-flush">
+
+            <li class="list-group-item px-0">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                National holidays are applicable to all employees.
+            </li>
+
+            <li class="list-group-item px-0">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                Festival holidays may vary according to company policy and regional offices.
+            </li>
+
+            <li class="list-group-item px-0">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                Employees required to work on a declared holiday may receive a compensatory off as per company policy.
+            </li>
+
+            <li class="list-group-item px-0">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                Weekend holidays are automatically reflected in the calendar and are not deducted from leave balance.
+            </li>
+
+            <li class="list-group-item px-0">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                Any newly declared public holiday will be updated by the HR Administrator.
+            </li>
+
+            <li class="list-group-item px-0">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                Employees are advised to verify holiday details before planning leave applications.
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+    
+
+</body>
+
+</html>

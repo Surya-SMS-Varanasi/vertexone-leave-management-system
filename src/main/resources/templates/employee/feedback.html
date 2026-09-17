@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/employee_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Employee - Dashboard</title>
+		<th:block id="style">
+			 <style>
+			 	.card{
+					background:linear-gradient(135deg, #EEF4FF 0%, #F8F5FF 100%);
+					border:1px solid #E5E7EB;
+					border-radius:18px;
+				    padding:30px;
+				    transition:.35s;
+				    box-shadow:0 4px 15px rgba(0,0,0,.05);
+				}
+				.card:hover{
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+	 			}
+	 			.btn{
+	 				font-size:5px;
+	 			}
+	 			.form-control{
+		            height:48px;
+		            border-radius:10px;
+		        }
+		
+		        .form-label{
+		            font-weight:600;
+		        }
+		        
+		         textarea.form-control{
+		            height:150px;
+		            resize:none;
+		        }	
+		        .btn-send{
+		            height:50px;
+		            border-radius:10px;
+		            font-size:17px;
+		        }
+	 			
+			 </style>
+		</th:block>
+	</head>
+	<body id="main">
+		<div class="container my-3">
+			<div class="row">
+				<div class="col-lg-2"></div>
+				<div class="col-lg-8">
+					<div class="card h-100" style="padding-bottom:10px;">
+						<div class="text py-2">
+							<h4 style=" display:inline-block; border-bottom:3px solid blue; padding-bottom:8px;">Share your valuable feedback</h4>
+						</div>
+						<div class="row g-2">
+							<div class="col-lg-12">
+								<form method="post" action="/feedback-submit">
+									<div class="row pt-4">									
+										<div class="col-sm-12">
+											<label class="form-label">Subject <span style="color:red;">*</span> </label>
+											<input type="text" name="subject" class="form-control" placeholder="Subject">
+										</div>									
+									</div>
+									<div class="row pt-4">									
+										<div class="col-sm-12">
+											<label class="form-label">Message </label>
+											<textarea name="message" class="form-control"></textarea>
+										</div>									
+									</div>
+									<div class="row my-2 mt-5 mb-2">
+										<div class="col-sm-12">
+											<div class=" d-flex gap-3 justify-content-end">
+												<button class="btn btn-danger btn-send" type="reset">
+													<i class="bi bi-arrow-clockwise"></i>
+													Cancel
+												</button>	
+												<button class="btn btn-primary" type="submit">
+													<i class="bi bi-send-fill"></i>
+													Share with us
+												</button>
+											</div>										
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2"></div>
+			</div>
+		</div>
+	</body>
+</html>

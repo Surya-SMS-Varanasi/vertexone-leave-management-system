@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/general_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>VSS- Leave Workflow</title>
+		<th:block id="style">
+			<style>
+				.timeline{
+					position: relative;
+				}
+				.timeline::before{
+					content:"";
+					position:absolute;
+				    left:50%;		
+				    top:0;		
+				    width:4px;		
+				    height:100%;		
+				    background:#0d6efd;		
+				    transform:translateX(-50%);					
+				}
+				.circle{
+				    width:24px;		
+				    height:24px;		
+				    background:#0d6efd;		
+				    border:5px solid white;		
+				    border-radius:50%;		
+				    margin:auto;		
+				    box-shadow:0 0 0 4px #cfe2ff;		
+				    position:relative;		
+				    z-index:2;		
+				}
+				.card{
+					background-color: white;
+					padding:20px 25px;
+					border-radius:15px;
+					box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+					transition: 0.35s;
+					height:100%;
+				}
+				.card:hover{					
+					transform: translateY(-10px);
+					box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+				}
+			</style>
+		</th:block>
+	</head>
+	<body id="main">
+		<!-- Introduction Image  Starts -->
+				<div class="row">
+					<div class="col-sm-12" style="height: 380px; background-image:url('assets/images/workflow-hero.png'); background-size:cover; background-position:center; background-repeat: no-repeat;">
+						<p class="h1 my-5 py-4 px-5 mb-1 pb-0 fw-semibold">Leave Workflow</p>
+						<p class="py-1 px-5 pb-3" style="letter-spacing: 0.05em;">
+							Track every stage of your leave request with a transparent,<br/>
+                    		efficient, and secure approval process. From application to<br/>
+                    		final approval, every step is monitored for complete visibility
+						<p>
+						<div class="d-flex flex-wrap gap-4 my-4 px-5 pb-2">
+							<div>
+								 <i class="bi bi-check-circle-fill text-primary fs-4 me-2"></i>
+                        		 <span class="fw-semibold">Easy</span>
+							</div>
+							<div>
+		                        <i class="bi bi-shield-check text-success fs-4 me-2"></i>
+		                        <span class="fw-semibold">Transparent</span>
+		                    </div>
+		                    <div>
+		                        <i class="bi bi-rocket-fill text-warning fs-4 me-2"></i>
+		                        <span class="fw-semibold">Fast Approval</span>
+		                    </div>
+						</div>
+						<a href="/emplogin" class="btn btn-primary ms-5">Apply Leave &rarr;</a>
+					</div>
+				</div>
+			<!-- Introduction Image  Ends -->
+			<!-- Work-flow starts -->
+				<div class="container py-5">
+					<div class="text-center mb-5">
+						<h2 class="fw-bold display-6">Leave Approval Work-flow</h2>
+						<p class="text-secondary">Follow every stage of the leave approval process from application to final confirmation.</p>
+					</div>
+					<div class="timeline">
+						<!-- Step 1 -->
+						<div class="row align-items-center mb-5 ">
+							<div class="col-lg-5 col-md-5">
+								<div class="card shadow-sm border-0">
+									<div class="card-body">
+										<div class="d-flex">
+											<div class="me-3">
+												<i class="bi bi-file-earmark-text-fill text-primary fs-1"></i>
+											</div>
+											<div>
+												<small class="text-primary fw-bold">Step 1</small>
+												<h5 class="fw-bold">Employee Applies</h5>
+												<p class="text-secondary mb-0"> Employee fills the leave application, <br/>selects leave type and submits the request.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-2 col-md-2 text-center">
+								<div class="circle"></div>
+							</div>
+							<div class="col-lg-5 col-md-5"></div>
+						</div>
+						<!-- Step 2 -->
+						<div class=" row align-items-center mb-5">
+							<div class="col-lg-5 col-md-5 col-sm-5 "></div>
+							<div class="col-lg-2 col-md-2 col-sm-2 text-center">
+								<div class="circle bg-info"></div>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5">
+								<div class="card shadow-sm border-0">
+									<div class="card-body">
+										<div class="d-flex">
+											<div class="me-3">
+												<i class="bi bi-person-check-fill text-info fs-1"></i>
+											</div>
+											<div>
+												<small class="text-info fw-bold">Step 2</small>
+												<h5 class="fw-bold">Manager Reviews</h5>
+												<p class="text-secondary mb-0"> Reporting Manager reviews the leave request<br/> and verifies eligibility.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>		
+						</div>
+						<!-- Step 3 -->
+						<div class="row align-items-center mb-5 ">
+							<div class="col-lg-5 col-md-5 col-sm-5">
+								<div class="card shadow-sm border-0">
+									<div class="card-body">
+										<div class="d-flex">
+											<div class="me-3">
+												<i class="bi bi-people-fill fs-1" style="color:purple;"></i>
+											</div>
+											<div>
+												<small class=" fw-bold" style="color:purple;">Step 3</small>
+												<h5 class="fw-bold">HR Verification</h5>
+												<p class="text-secondary mb-0"> HR Verifies leave as per company leave policy, <br/>and organization rules.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 text-center">
+								<div class="circle" style="background-color:purple;"></div>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5"></div>
+						</div>
+						<!-- Map -->
+						<div class=" row align-items-center mb-5">
+							<div class="col-lg-5 col-md-5 col-sm-5 "></div>
+							<div class="col-lg-2 col-md-2 col-sm-2 text-center">
+								<div class="circle bg-success"></div>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5">
+								<div class="card shadow-sm border-0">
+									<div class="card-body">
+										<div class="d-flex">
+											<div class="me-3">
+												<i class="bi bi-patch-check-fill text-success fs-1"></i>
+											</div>
+											<div>
+												<small class="text-success fw-bold">Step 4</small>
+												<h5 class="fw-bold">Leave Approved</h5>
+												<p class="text-secondary mb-0"> The authorized manager approves the leave request after reviewing the application, leave balance, and company policies. The request is now officially accepted.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>		
+						</div>
+						<!-- Step 5 -->
+						<div class="row align-items-center mb-5 ">
+							<div class="col-lg-5 col-md-5 col-sm-5">
+								<div class="card shadow-sm border-0">
+									<div class="card-body">
+										<div class="d-flex">
+											<div class="me-3">
+												<i class="bi bi-calendar2-check-fill text-warning fs-1"></i>
+											</div>
+											<div>
+												<small class="text-warning fw-bold">Step 5</small>
+												<h5 class="fw-bold">Leave Balance Updated</h5>
+												<p class="text-secondary mb-0"> The system automatically deducts the approved leave days from the employee's available leave balance and updates the leave records.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 text-center">
+								<div class="circle bg-warning"></div>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5"></div>
+						</div>
+						
+						<div class=" row align-items-center mb-5">
+							<div class="col-5"></div>
+							<div class="col-2 text-center">
+								<div class="circle"></div>
+							</div>
+							<div class="col-5">
+								<div class="card shadow-sm border-0">
+									<div class="card-body">
+										<div class="d-flex">
+											<div class="me-3">
+												<i class="bi bi-envelope-check-fill text-primary fs-1"></i>
+											</div>
+											<div>
+												<small class="text-primary fw-bold">Step 6</small>
+												<h5 class="fw-bold">Notification sent</h5>
+												<p class="text-secondary mb-0"> A confirmation notification is sent to the employee via email and the dashboard, informing them that the leave request has been successfully processed.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>		
+						</div>
+					</div>
+				</div>
+			<!-- Work-flow ends -->
+	</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html th:replace="~{shared/general_layout::layout(~{::title}, ~{::#main}, ~{::#style})}">
+	<head>
+		<meta charset="UTF-8">
+		<title>VSS- Image Section</title>
+		<th:block id="style">
+			<style>
+				.gallery-card{
+				    border-radius:16px;
+				    overflow:hidden;
+				    transition:.3s;
+				}		
+				.gallery-card img{		
+				    height:170px;
+				    object-fit:cover;
+				    transition:.4s;		
+				}		
+				.gallery-card:hover{		
+				    transform:translateY(-8px);
+				    box-shadow:0 15px 35px rgba(0,0,0,.15)!important;		
+				}		
+				.gallery-card:hover img{		
+				    transform:scale(1.08);		
+				}		
+				.gallery-card .card-body{		
+				    padding:18px;		
+				}		
+				.gallery-sort{
+				    height:48px;
+				    border-radius:12px;
+				    border:1px solid #dee2e6;
+				    font-weight:500;
+				    cursor:pointer;
+				    transition:all .3s ease;
+				}		
+				.gallery-sort:focus{
+				    border-color:#0d6efd;
+				    box-shadow:0 0 0 .2rem rgba(13,110,253,.15);
+				}		
+				
+			</style>
+		</th:block>
+	</head>
+	<body id="main">
+		<!-- Introduction Image  Starts -->
+				<div class="row" style="border-bottom:1px solid #e5e7eb;">
+					<div class="col-sm-12" style="height: 200px; background-image:url('assets/images/image-hero.png'); background-size:cover; background-position:center; background-repeat: no-repeat;">
+						<div class="text-center mb-2 mt-5">
+							<h2 class="display-5 fw-bold">Gallery</h2>
+				            <p class="text-muted">Moments from events, celebrations and activities.</p>
+				        </div>
+					</div>
+				</div>
+			<!-- Introduction Image  Ends -->
+			<!-- Bottons starts -->
+				<section class="gallery-section py-5">
+				    <div class="container">				
+				        <!-- Filter -->				
+				        <div class="row mb-4 align-items-center">				
+				            <div class="col-sm-12 text-center mb-4">						
+				                    <button class="btn btn-primary rounded-pill px-4">All</button>				
+				                    <button class="btn btn-outline-dark rounded-pill px-4">Events</button>				
+				                    <button class="btn btn-outline-dark rounded-pill px-4">Team Outings</button>				
+				                    <button class="btn btn-outline-dark rounded-pill px-4">Celebrations</button>				
+				                    <button class="btn btn-outline-dark rounded-pill px-4">Workshops</button>			
+				            </div>					
+				        </div>				
+				        <!-- Gallery -->				
+				        <div class="row g-4 mb-5">				
+				            <!-- Repeat -->				
+				            <div class="col-lg-3 col-md-4 col-sm-6">				
+				                <div class="card gallery-card border-0 shadow-sm h-100">				
+				                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDxtl-Itzh-p_RAwdBo_1VPevuHG7uNsPF4h-EPe4u3A&s=10" class="card-img-top" alt="">				
+				                    <div class="card-body">				
+				                        <h6 class="fw-bold mb-2">Annual Day Celebration</h6>				
+				                        <small class="text-muted">				
+				                            <i class="bi bi-calendar-event me-1"></i>				
+				                            12 Jan, 2024				
+				                        </small>				
+				                    </div>				
+				                </div>				
+				            </div>
+				            
+				            <div class="col-lg-3 col-md-4 col-sm-6">				
+				                <div class="card gallery-card border-0 shadow-sm h-100">				
+				                    <img src="https://groupdynamix.com/wp-content/uploads/2024/08/Header-30-Group-Outing-Ideas-to-Strengthen-Bonds-and-Boost-Team-Spirit-1-1280x720.png" class="card-img-top" alt="">				
+				                    <div class="card-body">				
+				                        <h6 class="fw-bold mb-2">Team Outings</h6>				
+				                        <small class="text-muted">				
+				                            <i class="bi bi-calendar-event me-1"></i>				
+				                            12 Jan, 2025				
+				                        </small>				
+				                    </div>				
+				                </div>				
+				            </div>	
+				            
+				            <div class="col-lg-3 col-md-4 col-sm-6">				
+				                <div class="card gallery-card border-0 shadow-sm h-100">				
+				                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGZcP_MbfI5MPqljQsiFrJjjNcA_nI1YeGoSSz2yK3Rg&s=10" class="card-img-top" alt="">				
+				                    <div class="card-body">				
+				                        <h6 class="fw-bold mb-2">Employee Birthday Bash</h6>				
+				                        <small class="text-muted">				
+				                            <i class="bi bi-calendar-event me-1"></i>				
+				                            15 Nov, 2025				
+				                        </small>				
+				                    </div>				
+				                </div>				
+				            </div>	
+				            
+				            <div class="col-lg-3 col-md-4 col-sm-6">				
+				                <div class="card gallery-card border-0 shadow-sm h-100">				
+				                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLvu5CUV6Ab6s1nwJmNMSa9wr9zhIJIHdtptIq18ANqQ&s=10" class="card-img-top" alt="">				
+				                    <div class="card-body">				
+				                        <h6 class="fw-bold mb-2">Leader-ship Workshop</h6>				
+				                        <small class="text-muted">				
+				                            <i class="bi bi-calendar-event me-1"></i>				
+				                            12 June, 2026				
+				                        </small>				
+				                    </div>				
+				                </div>				
+				            </div>	
+				            
+				            <div class="col-lg-3 col-md-4 col-sm-6">				
+				                <div class="card gallery-card border-0 shadow-sm h-100">				
+				                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyiyOxy5L9M7bbfX7UmlTX-9GGVAc6wNkYVmM0CT7RLg&s=10" class="card-img-top" alt="">				
+				                    <div class="card-body">				
+				                        <h6 class="fw-bold mb-2">Holi Celebration</h6>				
+				                        <small class="text-muted">				
+				                            <i class="bi bi-calendar-event me-1"></i>				
+				                            18 Feb, 2026				
+				                        </small>				
+				                    </div>				
+				                </div>				
+				            </div>	
+				            
+				            <div class="col-lg-3 col-md-4 col-sm-6">				
+				                <div class="card gallery-card border-0 shadow-sm h-100">				
+				                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl2eT-zdELJsPIJUlUWojnCLyVzbENeYPUbNC6X0DfIg&s=10" class="card-img-top" alt="">				
+				                    <div class="card-body">				
+				                        <h6 class="fw-bold mb-2">Blood Donation Camp</h6>				
+				                        <small class="text-muted">				
+				                            <i class="bi bi-calendar-event me-1"></i>				
+				                            12 Nov, 2025				
+				                        </small>				
+				                    </div>				
+				                </div>				
+				            </div>	
+				            
+				            <div class="col-lg-3 col-md-4 col-sm-6">				
+				                <div class="card gallery-card border-0 shadow-sm h-100">				
+				                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTZODrKIExTcG2HODu4aRvhr1NALQ5P0ICH4_zux2e7w&s=10" class="card-img-top" alt="">				
+				                    <div class="card-body">				
+				                        <h6 class="fw-bold mb-2">Project Kickoff Meeting</h6>				
+				                        <small class="text-muted">				
+				                            <i class="bi bi-calendar-event me-1"></i>				
+				                            24 Apr, 2026				
+				                        </small>				
+				                    </div>				
+				                </div>				
+				            </div>	
+				            
+				            <div class="col-lg-3 col-md-4 col-sm-6">				
+				                <div class="card gallery-card border-0 shadow-sm h-100">				
+				                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWMi9EBdFPWkfLqZIYVqaiQhkmZyDaE-IlabjTV2tXgw&s" class="card-img-top" alt="">				
+				                    <div class="card-body">				
+				                        <h6 class="fw-bold mb-2">Best Team Award</h6>				
+				                        <small class="text-muted">				
+				                            <i class="bi bi-calendar-event me-1"></i>				
+				                            07 Apr, 2026				
+				                        </small>				
+				                    </div>				
+				                </div>				
+				            </div>				
+				            <!-- Copy above card -->				
+				        </div>				
+				    </div>				
+				</section>
+			<!-- Buttons ends -->
+	</body>
+</html>
