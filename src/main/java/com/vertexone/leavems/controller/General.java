@@ -61,7 +61,7 @@ public class General {
 		List<String> ls = jTemp.queryForList(sql, String.class);
 		return ls;
 	}
-	@GetMapping("/home")
+	@GetMapping({"/", "/home"})
 	public String homepage(Model m) {
 		m.addAttribute("lst",getNotification()); // this can be used to decide at which page we have to 
 		//eservice.sendEmail("suryaprataps2024@gmail.com", "Bablu is dead", "Babli is getting the divine punishment. :((");
