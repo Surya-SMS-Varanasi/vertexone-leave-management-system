@@ -138,7 +138,7 @@ public class General {
 						File dir = new File(folderpath);
 						
 						if(!dir.exists()) {
-							dir.mkdir();			//-> Creating the directory if it doesnt exists.
+							dir.mkdirs();			//-> Creating the directory if it doesnt exists.
 						}
 												
 						String filename = er.getProfilepic().getOriginalFilename();
