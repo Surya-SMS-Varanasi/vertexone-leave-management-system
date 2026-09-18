@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,13 @@ public class Employee {
 	@Autowired
 	EmailService eservice;
 	
+	@GetMapping("/employee-profile-image")
+	public ResponseEntity<byte[]> getEmployeeProfileImage(HttpSession session) {
+	    String userid = session.getAttribute("EmpSession").toString();
+	    String sql = "SELECT profilepic FROM employeemaster WHERE empid='"+userid+"'";
+	    byte[] image = jTemp.queryForObject(sql, byte[].class);
+	    return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+	}
 	String getCurrentYearSession() {
 		Date dt = new Date();
 		
@@ -291,8 +300,8 @@ public class Employee {
 	    EmployeeReg emp = jTemp.queryForObject(sql,new BeanPropertyRowMapper<>(EmployeeReg.class));
 
 	    m.addAttribute("emp", emp);
-	    String pic = "/employee-images/"+ emp.getPic_file_name();
-	    m.addAttribute("profilepic",pic);
+//	    String pic = "/employee-images/"+ emp.getPic_file_name();
+//	    m.addAttribute("profilepic",pic);
 	    return "employee/update";
 	}
 	@PostMapping("/updatepro")

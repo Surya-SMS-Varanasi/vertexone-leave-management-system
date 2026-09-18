@@ -36,7 +36,8 @@
         
         <!-- Profile -->
         <div class="profile">
-            <img th:src="@{/employee-images/{img}(img=${session.emp.pic_file_name})}" alt="Profile">
+            <!--  --<img th:src="@{/employee-images/{img}(img=${session.emp.pic_file_name})}" alt="Profile">-->
+            <img th:src="@{/employee-profile-image}" alt="Profile">
             <h5 th:text="${session.emp.fullname}"></h5>
            <!--  -- <h5  th:text="${session.uname}"></h5>-->
             <p th:text="${session.emp.empgrade}">Software Engineer</p>
