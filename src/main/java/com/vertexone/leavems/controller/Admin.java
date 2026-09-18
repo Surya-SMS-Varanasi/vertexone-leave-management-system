@@ -300,15 +300,16 @@ public class Admin {
 	}
 	@GetMapping("/manageemployee")
 	public String manageEmployee(@ModelAttribute EmployeeReg rg, Model md) {
-		String sql = "SELECT * FROM employeemaster";
-		List<EmployeeReg> lst = jTemp.query(sql, new BeanPropertyRowMapper<>(EmployeeReg.class));
+		String sql = "SELECT empid, fullname, age, gender, mobno, pic_file_name, empgrade, designation, joiningdate, addedOn FROM employeemaster";
+	    List<EmployeeReg> lst = jTemp.query(sql, new BeanPropertyRowMapper<>(EmployeeReg.class));
 		md.addAttribute("list",lst);
 		return "admin/employeemng";
 	}
 	@GetMapping("/edit")
 	public String editemployee(String id, Model md) {
 		System.out.println("String : "+ id);
-		String sql = "SELECT * FROM employeemaster WHERE empid = '"+id+"'";
+		String sql = "SELECT empid, fullname, age, gender, mobno, pic_file_name, empgrade, designation, joiningdate, addedOn FROM employeemaster WHERE empid='"+id+"'";
+	    
 
 	    EmployeeReg employee = jTemp.queryForObject(sql,new BeanPropertyRowMapper<>(EmployeeReg.class));
 

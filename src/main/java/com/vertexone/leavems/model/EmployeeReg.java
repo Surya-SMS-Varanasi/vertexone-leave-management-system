@@ -14,6 +14,13 @@ public class EmployeeReg {
 	private String joiningdate;
 	private String addedon;
 	private MultipartFile profilepic;
+	private byte[] profilepicData;
+	public byte[] getProfilepicData() {
+		return profilepicData;
+	}
+	public void setProfilepicData(byte[] profilepicData) {
+		this.profilepicData = profilepicData;
+	}
 	public MultipartFile getProfilepic() {
 		return profilepic;
 	}

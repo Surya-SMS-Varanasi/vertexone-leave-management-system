@@ -124,14 +124,16 @@ public class General {
 		System.out.println("Controller reached");
 		String msg="";
 		try {
-			String imgcode = session.getAttribute("cacode").toString(); 			
+			String imgcode = session.getAttribute("cacode").toString(); 
+			System.out.println("1");
 			if(imgcode.equals(captchacode)) {
 				if(er.getProfilepic().isEmpty()) {
 					msg="Please upload the profile pic.Image should be in (png,jpg or jpeg)format and size should be less than 200Kb.";
 				}
 				else {
+					System.out.println("2");
 					if(pass.equals(confPass)) {//Password checking successfull
-						
+						System.out.println("3..file upload section");
 						/* File Uploading */
 						
 						String folderpath = System.getProperty("user.dir")+"/src/main/resources/static/employee-images/";
@@ -150,18 +152,25 @@ public class General {
 								msg = "Image size should be less than 200Kb.";
 							}
 							else {
-								
+								System.out.println("4... everything fine");
 								/* Changing the file name to prevent same name type files */
 								EncryptionManager em = new EncryptionManager();
 								String fname = filename.substring(0,filename.lastIndexOf('.'));
 								String encryptedfname = em.fileNameChanger(fname);
 								String newFilename = encryptedfname.concat(extension);
+								System.out.println("4.1... FILENAME GENERATED.1");
+								byte[] imageData = er.getProfilepic().getBytes();
+								
 								
 								File destination = new File(folderpath+newFilename);
 								er.getProfilepic().transferTo(destination); 				// file is now stored to the folder.
-								
-								String sql = "INSERT INTO employeemaster(empid,fullname,age,gender,pic_file_name,mobno,empgrade,designation,joiningdate) VALUES ('"+er.getEmpid()+"', '"+er.getFullname()+"', '"+er.getAge()+"', '"+er.getGender()+"','"+newFilename+"', '"+er.getMobno()+"','"+er.getEmpgrade()+"','"+er.getDesignation()+"','"+er.getJoiningdate()+"')";
-								int rr = jTemp.update(sql);
+								System.out.println("4.2.... IMAGE TRANSFREED.");
+//								String sql = "INSERT INTO employeemaster(empid,fullname,age,gender,pic_file_name,mobno,empgrade,designation,joiningdate,profilepic) VALUES ('"+er.getEmpid()+"', '"+er.getFullname()+"', '"+er.getAge()+"', '"+er.getGender()+"','"+newFilename+"', '"+er.getMobno()+"','"+er.getEmpgrade()+"','"+er.getDesignation()+"','"+er.getJoiningdate()+"','"+er.getProfilepic().getBytes()+"')";
+//								int rr = jTemp.update(sql);
+								String sql = "INSERT INTO employeemaster(empid,fullname,age,gender,pic_file_name,mobno,empgrade,designation,joiningdate,profilepic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+								System.out.println("4.3... SQL READY");
+								int rr = jTemp.update(sql,er.getEmpid(),er.getFullname(),er.getAge(),er.getGender(),newFilename,er.getMobno(),er.getEmpgrade(),er.getDesignation(),er.getJoiningdate(),imageData);
+								System.out.println("5... Insertion");
 								if(rr > 0) {
 									pass = em.passwordEncrypt(pass);
 									String userType = "Employee";
@@ -240,7 +249,8 @@ public class General {
 									else {
 										msg="Registration can't be done due to technical issue !";
 									}									
-								}																
+								}
+								System.out.println("4'S ELSE BLOCK DISRUPPTED.");
 							}
 						}
 						else {
@@ -257,9 +267,10 @@ public class General {
 			}
 		}
 		catch(Exception e) {
+			e.printStackTrace();
 			msg="Exception occured : "+e;
 		}
-		
+		System.out.println("6... didnt entered in if block(1)");
 		rd.addFlashAttribute("msg", msg);
 		return "redirect:/register";
 	}
@@ -293,7 +304,7 @@ public class General {
 				
 				if(res > 0) {
 					session.setAttribute("EmpSession", userid);
-					String sql2 = "SELECT * FROM employeemaster WHERE empid = '"+userid+"'";
+			        String sql2 = "SELECT empid, fullname, age, gender, mobno, pic_file_name, empgrade, designation, joiningdate, addedOn FROM employeemaster WHERE empid = '"+userid+"'";
 					EmployeeReg emp = jTemp.queryForObject(sql2, new BeanPropertyRowMapper<>(EmployeeReg.class));
 					
 					session.setAttribute("emp", emp);
@@ -308,6 +319,7 @@ public class General {
 				}
 			}
 			catch(Exception e) {
+				e.printStackTrace();
 				msg = "Technical issue occured : " + "The requested User doesnt found!";
 			}
 			rd.addFlashAttribute("msg",msg);

@@ -286,7 +286,7 @@ public class Employee {
 	public String updateProfilePage(HttpSession session, Model m) {
 
 	    String userid = session.getAttribute("EmpSession").toString();
-	    String sql = "SELECT * FROM employeemaster WHERE empid='"+userid+"'";
+	    String sql = "SELECT empid, fullname, age, gender, mobno, pic_file_name, empgrade, designation, joiningdate, addedOn FROM employeemaster WHERE empid='"+userid+"'";
 
 	    EmployeeReg emp = jTemp.queryForObject(sql,new BeanPropertyRowMapper<>(EmployeeReg.class));
 
